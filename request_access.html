@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='assets/css/style.css' rel='stylesheet'>
+  <link rel="icon" href="assets/images/icon.png">
+  <title>Request Access</title>
+</head>
+<body>
+  <div>
+    <a href="./index.html" style="text-decoration:none;">Home</a>
+    <a href="./about.html" style="text-decoration:none;">About</a>
+    <a href="./project_plan.html" style="text-decoration:none;">Project Plan</a>
+    <hr>
+  </div>
+
+  <form action="./php/req_access.php" method="post" id="login">
+    <h1>Request Access</h1>
+    <p>Username:
+      <input type="text" name="username">
+    </p>
+    <p>Password:
+      <input type="text" name="password">
+    </p>
+    <input type="submit" value="Request Access">
+  </form>
+</body>
+</html>
