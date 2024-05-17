@@ -12,14 +12,45 @@
     <a href="./index.html" style="text-decoration:none;">Home</a>
     <a href="./about.html" style="text-decoration:none;">About</a>
     <a href="./project_plan.html" style="text-decoration:none;">Project Plan</a>
+    <a href="./assignments.html" style="text-decoration:none;">Assignments</a>
     <hr>
   </div>
   <img src="assets/images/4WyattNoahWithLove.png" alt=“Group_logo” title=“Group_logo” height=“50” />
 
+  <div>
+    <input type="image" id="btn_1" onclick="floor_select(1)" src="./assets/images/elevator_btns/elevator-btn-1.png">
+    <input type="image" id="btn_2" onclick="floor_select(2)" src="./assets/images/elevator_btns/elevator-btn-2.png">
+    <input type="image" id="btn_3" onclick="floor_select(3)" src="./assets/images/elevator_btns/elevator-btn-3.png">
+  </div>
 
   <div>
-    <a href="./demo.php" style="text-decoration:none;">Demo</a><br>
+    <a href="./php/demo.php" style="text-decoration:none;">Demo</a><br>
   </div>
   <H1>Elevator!!!</H1>
+
+  <script>
+    function floor_select(floor){
+			let btn_1 = document.getElementById("btn_1");
+			let btn_2 = document.getElementById("btn_2");
+			let btn_3 = document.getElementById("btn_3");
+      btn_1.src = "./assets/images/elevator_btns/elevator-btn-1.png"
+      btn_2.src = "./assets/images/elevator_btns/elevator-btn-2.png"
+      btn_3.src = "./assets/images/elevator_btns/elevator-btn-3.png"
+      if(floor==1){
+        btn_1.src = "./assets/images/elevator_btns/elevator-btn-1-grn.png"
+      }
+      else if(floor==2){
+        btn_2.src = "./assets/images/elevator_btns/elevator-btn-2-grn.png"
+      }
+      else if(floor==3){
+        btn_3.src = "./assets/images/elevator_btns/elevator-btn-3-grn.png"
+      }
+
+			document.getElementById("qty"+rollNum).value = qty
+			document.getElementById("add"+rollNum).value = add
+			document.getElementById("diceRoll"+rollNum).innerHTML = diceRoll
+		}
+  </script>
+
 </body>
 </html>
