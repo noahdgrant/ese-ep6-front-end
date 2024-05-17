@@ -50,9 +50,13 @@
       <p><a href="./request_access.html">Cant login? Request Access</a></p>
     </fieldset>
   </form>
-  <audio autoplay loop src="music/elevator_music.mp3"></audio>
+  
+  <audio loop autoplay src="./assets/music/elevator_music.mp3" id="audioElement"></audio>
+  
   <script>
     function floor_select(floor){
+	  		document.getElementById("audioElement").play();
+
 			let btn_1 = document.getElementById("btn_1");
 			let btn_2 = document.getElementById("btn_2");
 			let btn_3 = document.getElementById("btn_3");
@@ -68,11 +72,7 @@
       else if(floor==3){
         btn_3.src = "./assets/images/elevator_btns/elevator-btn-3-grn.png"
       }
-
-			document.getElementById("qty"+rollNum).value = qty
-			document.getElementById("add"+rollNum).value = add
-			document.getElementById("diceRoll"+rollNum).innerHTML = diceRoll
-		}
+	}
   </script>
   <footer>
     <p>Copyright © Wyatt Richard, Noah Grant<br>
