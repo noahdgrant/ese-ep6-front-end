@@ -3,9 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Wyatt Richard, Noah Grant">
   <link href='assets/css/style.css' rel='stylesheet'>
   <link rel="icon" href="assets/images/icon.png">
   <title>Home Page</title>
+  <style>
+    .centered_image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 20%;
+    }
+  </style>
 </head>
 <body>
   <div>
@@ -15,7 +24,7 @@
     <a href="./assignments.html" style="text-decoration:none;">Assignments</a>
     <hr>
   </div>
-  <img src="assets/images/4WyattNoahWithLove.png" alt=“Group_logo” title=“Group_logo” height=“50” />
+  <img src="assets/images/4WyattNoahWithLove.png" alt=“Group_logo” title=“Group_logo” class="centered_image"/>
 
   <div>
     <input type="image" id="btn_1" onclick="floor_select(1)" src="./assets/images/elevator_btns/elevator-btn-1.png">
@@ -26,8 +35,22 @@
   <div>
     <a href="./php/demo.php" style="text-decoration:none;">Demo</a><br>
   </div>
-  <H1>Elevator!!!</H1>
+  <h1>Elevator!!!</h1>
 
+  <form action="./php/login.php" method="post" id="login">
+    <fieldset>
+      <legend>Login</legend>
+      <p>Username:
+        <input type="text" name="username">
+      </p>
+      <p>Password:
+        <input type="text" name="password">
+      </p>
+      <input type="submit" value="Log in">
+      <p><a href="./request_access.html">Cant login? Request Access</a></p>
+    </fieldset>
+  </form>
+  <audio autoplay loop src="music/elevator_music.mp3"></audio>
   <script>
     function floor_select(floor){
 			let btn_1 = document.getElementById("btn_1");
@@ -51,6 +74,8 @@
 			document.getElementById("diceRoll"+rollNum).innerHTML = diceRoll
 		}
   </script>
-
+  <footer>
+    <p>Copyright © Wyatt Richard, Noah Grant<br>
+  </footer>
 </body>
 </html>
