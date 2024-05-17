@@ -5,22 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href='assets/css/style.css' rel='stylesheet'>
   <link rel="icon" href="assets/images/icon.png">
-  <title>Project Plan</title>
+  <title>Login</title>
 </head>
 <body>
   <div>
     <a href="./index.html" style="text-decoration:none;">Home</a>
     <a href="./about.html" style="text-decoration:none;">About</a>
     <a href="./project_plan.html" style="text-decoration:none;">Project Plan</a>
-    <a href="./assignments.html" style="text-decoration:none;">Assignments</a>
     <hr>
   </div>
-  <div>
-    <a href="./logbook_noah.html" style="text-decoration:none;">Noah's Logbook</a>
-    <a href="./logbook_wyatt.html" style="text-decoration:none;">Wyatt's Logbook</a>
-  </div>
-  <br>
-  <p>insert gantt chart here</p>
 
+  <form action="./php/login.php" method="post" id="login">
+    <h1>Please Log In</h1>
+    <p>Username:
+      <input type="text" name="username">
+    </p>
+    <p>Password:
+      <input type="text" name="password">
+    </p>
+    <input type="submit" value="Log in">
+    <p><a href="./request_access.html">Request Access</a></p>
+  </form>
+  
 </body>
 </html>
