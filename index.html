@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Wyatt Richard, Noah Grant">
-  <link href='assets/css/style.css' rel='stylesheet'>
-  <link rel="icon" href="assets/images/icon.png">
+  <meta name="description" content="Homepage for Project VI: Elevator Project">
+  <meta name="robots" content="noindex">
+  <meta http-equiz="pragma" content="no-cache">
+  <link href='css/style.css' rel='stylesheet'>
+  <link rel="icon" href="images/icon.png">
   <title>Home Page</title>
   <style>
     .centered_image {
@@ -24,12 +27,12 @@
     <a href="./assignments.html" style="text-decoration:none;">Assignments</a>
     <hr>
   </div>
-  <img src="assets/images/4WyattNoahWithLove.png" alt=“Group_logo” title=“Group_logo” class="centered_image"/>
+  <img src="images/4WyattNoahWithLove.png" alt=“Group_logo” title=“Group_logo” class="centered_image"/>
 
   <div>
-    <input type="image" id="btn_1" onclick="floor_select(1)" src="./assets/images/elevator_btns/elevator-btn-1.png">
-    <input type="image" id="btn_2" onclick="floor_select(2)" src="./assets/images/elevator_btns/elevator-btn-2.png">
-    <input type="image" id="btn_3" onclick="floor_select(3)" src="./assets/images/elevator_btns/elevator-btn-3.png">
+    <input type="image" id="btn_1" onclick="floor_select(1)" src="./images/elevator_btns/elevator-btn-1.png">
+    <input type="image" id="btn_2" onclick="floor_select(2)" src="./images/elevator_btns/elevator-btn-2.png">
+    <input type="image" id="btn_3" onclick="floor_select(3)" src="./images/elevator_btns/elevator-btn-3.png">
   </div>
 
   <div>
@@ -51,7 +54,7 @@
     </fieldset>
   </form>
   
-  <audio loop autoplay src="./assets/music/elevator_music.mp3" id="audioElement"></audio>
+  <audio loop autoplay src="./music/elevator_music.mp3" id="audioElement"></audio>
   
   <script>
     function floor_select(floor){
@@ -60,22 +63,22 @@
 			let btn_1 = document.getElementById("btn_1");
 			let btn_2 = document.getElementById("btn_2");
 			let btn_3 = document.getElementById("btn_3");
-      btn_1.src = "./assets/images/elevator_btns/elevator-btn-1.png"
-      btn_2.src = "./assets/images/elevator_btns/elevator-btn-2.png"
-      btn_3.src = "./assets/images/elevator_btns/elevator-btn-3.png"
+      btn_1.src = "./images/elevator_btns/elevator-btn-1.png"
+      btn_2.src = "./images/elevator_btns/elevator-btn-2.png"
+      btn_3.src = "./images/elevator_btns/elevator-btn-3.png"
       if(floor==1){
-        btn_1.src = "./assets/images/elevator_btns/elevator-btn-1-grn.png"
+        btn_1.src = "./images/elevator_btns/elevator-btn-1-grn.png"
       }
       else if(floor==2){
-        btn_2.src = "./assets/images/elevator_btns/elevator-btn-2-grn.png"
+        btn_2.src = "./images/elevator_btns/elevator-btn-2-grn.png"
       }
       else if(floor==3){
-        btn_3.src = "./assets/images/elevator_btns/elevator-btn-3-grn.png"
+        btn_3.src = "./images/elevator_btns/elevator-btn-3-grn.png"
       }
 	}
   </script>
   <footer>
-    <p>Copyright © Wyatt Richard, Noah Grant<br>
+    <p>Copyright &copy Wyatt Richard, Noah Grant<br>
   </footer>
 </body>
 </html>
