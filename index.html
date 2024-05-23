@@ -11,55 +11,58 @@
   <link href='css/style.css' rel='stylesheet'>
   <link rel="icon" href="images/icon.png">
   <title>Home Page</title>
-  <style>
-    .centered_image {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 20%;
-    }
-  </style>
 </head>
 <body>
   <div id="page" class="container">
-    <div>
-      <a href="./index.html" style="text-decoration:none;">Home</a>
-      <a href="./about.html" style="text-decoration:none;">About</a>
-      <a href="./project_plan.html" style="text-decoration:none;">Project Plan</a>
-      <a href="./assignments.html" style="text-decoration:none;">Assignments</a>
+    <header class="fixed-top">
+      <nav>
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./project_plan.html">Project Plan</a>
+        <a href="./assignments.html">Assignments</a>
+        <a href="./logbook_noah.html">Noah's Logbook</a>
+        <a href="./logbook_wyatt.html">Wyatt's Logbook</a>
+      </nav>
       <hr>
-    </div>
-    <img src="images/4WyattNoahWithLove.png" alt=“Group_logo” title=“Group_logo” class="centered_image"/>
-  
-    <div>
-      <input type="image" id="btn_1" onclick="floor_select(1)" src="./images/elevator_btns/elevator-btn-1.png">
-      <input type="image" id="btn_2" onclick="floor_select(2)" src="./images/elevator_btns/elevator-btn-2.png">
-      <input type="image" id="btn_3" onclick="floor_select(3)" src="./images/elevator_btns/elevator-btn-3.png">
-    </div>
-  
-    <div>
-      <a href="./php/demo.php" style="text-decoration:none;">Demo</a><br>
-    </div>
-    <h1>Elevator!!!</h1>
-  
-    <form action="./php/login.php" method="post" id="login">
-      <fieldset>
-        <legend>Login</legend>
-        <div>
-          <label for="username" class="form_label">Username:</label>
-          <input id="username" type="text" name="username">
-        </div>
-        <div>
-          <label for="password" class="form_label">Password:</label>
-          <input id="password" type="text" name="password">
-        </div>
-        <input type="submit" value="Log in">
-        <p><a href="./request_access.html">Cant login? Request Access</a></p>
-      </fieldset>
-    </form>
+    </header>
     
-    <audio loop autoplay src="./music/elevator_music.mp3" id="audioElement"></audio>
+    <div id="content">
+      <img src="images/4WyattNoahWithLove.png" alt=“Group_logo” title=“Group_logo” class="centered_image"/>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <input type="image" id="btn_3" onclick="floor_select(3)" src="./images/elevator_btns/elevator-btn-3.png"><br>
+          <input type="image" id="btn_2" onclick="floor_select(2)" src="./images/elevator_btns/elevator-btn-2.png"><br>
+          <input type="image" id="btn_1" onclick="floor_select(1)" src="./images/elevator_btns/elevator-btn-1.png">
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <form action="./php/login.php" method="post" id="login">
+            <fieldset>
+              <legend>Login</legend>
+              <div>
+                <label for="username" class="form_label">Username:</label>
+                <input id="username" class="form_input" type="text" name="username">
+              </div>
+              <div>
+                <label for="password" class="form_label">Password:</label>
+                <input id="password" class="form_input" type="text" name="password">
+              </div>
+              <input type="submit" value="Log in">
+              <p><a href="./request_access.html">Cant login? Request Access</a></p>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+      
     
+      <div>
+        <a href="./php/demo.php" style="text-decoration:none;">Demo</a><br>
+      </div>
+    
+      
+      
+      <audio loop autoplay src="./music/elevator_music.mp3" id="audioElement"></audio>
+    </div>
+
     <footer>
       <p>Copyright &copy Wyatt Richard, Noah Grant<br>
     </footer>
@@ -86,7 +89,9 @@
       }
 	}
   </script>
-
+  <!--[if lt IE 9]>
+    <script src=http://html5shiv.googlecode.com/svn/trunk/html5.js></script>
+  <![endif] -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
