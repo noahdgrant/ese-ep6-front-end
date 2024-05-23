@@ -3,9 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href='assets/css/style.css' rel='stylesheet'>
-  <link rel="icon" href="assets/images/icon.png">
+  <meta name="author" content="Wyatt Richard, Noah Grant">
+  <meta name="description" content="Homepage for Project VI: Elevator Project">
+  <meta name="robots" content="noindex">
+  <meta http-equiz="pragma" content="no-cache">
+  <link href='css/style.css' rel='stylesheet'>
+  <link rel="icon" href="images/icon.png">
   <title>Home Page</title>
+  <style>
+    .centered_image {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 20%;
+    }
+  </style>
 </head>
 <body>
   <div>
@@ -15,42 +27,58 @@
     <a href="./assignments.html" style="text-decoration:none;">Assignments</a>
     <hr>
   </div>
-  <img src="assets/images/4WyattNoahWithLove.png" alt=“Group_logo” title=“Group_logo” height=“50” />
+  <img src="images/4WyattNoahWithLove.png" alt=“Group_logo” title=“Group_logo” class="centered_image"/>
 
   <div>
-    <input type="image" id="btn_1" onclick="floor_select(1)" src="./assets/images/elevator_btns/elevator-btn-1.png">
-    <input type="image" id="btn_2" onclick="floor_select(2)" src="./assets/images/elevator_btns/elevator-btn-2.png">
-    <input type="image" id="btn_3" onclick="floor_select(3)" src="./assets/images/elevator_btns/elevator-btn-3.png">
+    <input type="image" id="btn_1" onclick="floor_select(1)" src="./images/elevator_btns/elevator-btn-1.png">
+    <input type="image" id="btn_2" onclick="floor_select(2)" src="./images/elevator_btns/elevator-btn-2.png">
+    <input type="image" id="btn_3" onclick="floor_select(3)" src="./images/elevator_btns/elevator-btn-3.png">
   </div>
 
   <div>
     <a href="./php/demo.php" style="text-decoration:none;">Demo</a><br>
   </div>
-  <H1>Elevator!!!</H1>
+  <h1>Elevator!!!</h1>
 
+  <form action="./php/login.php" method="post" id="login">
+    <fieldset>
+      <legend>Login</legend>
+      <p>Username:
+        <input type="text" name="username">
+      </p>
+      <p>Password:
+        <input type="text" name="password">
+      </p>
+      <input type="submit" value="Log in">
+      <p><a href="./request_access.html">Cant login? Request Access</a></p>
+    </fieldset>
+  </form>
+  
+  <audio loop autoplay src="./music/elevator_music.mp3" id="audioElement"></audio>
+  
   <script>
     function floor_select(floor){
+	  		document.getElementById("audioElement").play();
+
 			let btn_1 = document.getElementById("btn_1");
 			let btn_2 = document.getElementById("btn_2");
 			let btn_3 = document.getElementById("btn_3");
-      btn_1.src = "./assets/images/elevator_btns/elevator-btn-1.png"
-      btn_2.src = "./assets/images/elevator_btns/elevator-btn-2.png"
-      btn_3.src = "./assets/images/elevator_btns/elevator-btn-3.png"
+      btn_1.src = "./images/elevator_btns/elevator-btn-1.png"
+      btn_2.src = "./images/elevator_btns/elevator-btn-2.png"
+      btn_3.src = "./images/elevator_btns/elevator-btn-3.png"
       if(floor==1){
-        btn_1.src = "./assets/images/elevator_btns/elevator-btn-1-grn.png"
+        btn_1.src = "./images/elevator_btns/elevator-btn-1-grn.png"
       }
       else if(floor==2){
-        btn_2.src = "./assets/images/elevator_btns/elevator-btn-2-grn.png"
+        btn_2.src = "./images/elevator_btns/elevator-btn-2-grn.png"
       }
       else if(floor==3){
-        btn_3.src = "./assets/images/elevator_btns/elevator-btn-3-grn.png"
+        btn_3.src = "./images/elevator_btns/elevator-btn-3-grn.png"
       }
-
-			document.getElementById("qty"+rollNum).value = qty
-			document.getElementById("add"+rollNum).value = add
-			document.getElementById("diceRoll"+rollNum).innerHTML = diceRoll
-		}
+	}
   </script>
-
+  <footer>
+    <p>Copyright &copy Wyatt Richard, Noah Grant<br>
+  </footer>
 </body>
 </html>

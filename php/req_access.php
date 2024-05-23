@@ -6,6 +6,7 @@ $submitted = !empty($_POST);
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Wyatt Richard, Noah Grant">
   <link href='assets/css/style.css' rel='stylesheet'>
   <link rel="icon" href="assets/images/icon.png">
   <title>Login Handler</title>
@@ -21,8 +22,10 @@ $submitted = !empty($_POST);
   <p>Form Submitted? <?php echo (int) $submitted; ?></p>
   <p>Your new login info is</p>
   <ul>
+    <li>Email: <?php echo $_POST['email']; ?></li>
     <li>Username: <?php echo $_POST['username']; ?></li>
     <li>Password: <?php echo $_POST['password'];?></li>
+    <li>ID: <?php echo $_POST['id'];?></li>
   </ul>
 </body>
 </html>
