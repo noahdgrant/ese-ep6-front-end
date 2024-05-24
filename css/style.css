@@ -1,24 +1,24 @@
-header, section, footer, aside, nav, article, figure { display: block;}
-
-a{
-    text-decoration:none;
-}
+header, section, footer, aside, nav, article, figure {display: block;}
 
 fieldset{
-    background-color:#CCC;
     border: 1px ridge black;
     border-radius: 10px;
+}
+
+input[type=text]{
+    color:grey;
+}
+
+input[type=text]:focus{
+    color:black;
 }
 
 legend{
     display: block;
 }
 
-input.text{
-    color:grey;
-}
-input.text:focus{
-    color:black;
+nav a{
+    font-family:'Courier New', Courier, monospace;
 }
 
 .form_input{
@@ -38,4 +38,8 @@ input.text:focus{
     margin-left: auto;
     margin-right: auto;
     width: 20%;
+}
+
+#content {
+    margin-top: 70px; /* Add a top margin to avoid content overlay */
   }
