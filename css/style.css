@@ -1,5 +1,13 @@
 header, section, footer, aside, nav, article, figure {display: block;}
 
+a{
+    color:black;
+}
+
+a:hover{
+    color:grey;
+}
+
 fieldset{
     border: 1px ridge black;
     border-radius: 10px;
@@ -42,4 +50,4 @@ nav a{
 
 #content {
     margin-top: 70px; /* Add a top margin to avoid content overlay */
-  }
+}
