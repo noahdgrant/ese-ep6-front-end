@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Wyatt Richard">
-    <meta name="description" content="Homepage for Project VI: Elevator Project">
+    <meta name="description" content="Page to create an account for elevator access">
     <meta name="robots" content="noindex">
     <meta http-equiz="pragma" content="no-cache">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href='css/style.css' rel='stylesheet'>
     <link rel="icon" href="images/icon.png">
-    <title>Home Page</title>
+    <title>Request Access</title>
 </head>
 <body>
     <div id="page" class="container">
@@ -21,7 +21,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="#">Home</a>
+                        <a class="nav-item nav-link" href="./index.html">Home</a>
                         <a class="nav-item nav-link" href="./about.html">About</a>
                         <a class="nav-item nav-link" href="./project_plan.html">Project Plan</a>
                         <a class="nav-item nav-link" href="./assignments/assignments.html">Assignments</a>
@@ -33,35 +33,44 @@
         </header>
 
         <div id="content">
-            <img src="images/4WyattNoahWithLove.png" alt=“Group_logo” title=“Group_logo” class="centered_image"/>
-            <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <input type="image" class="centered_image" id="btn_3" onclick="floor_select(3)" src="./images/elevator_btns/elevator-btn-3.png"><br>
-                    <input type="image" class="centered_image" id="btn_2" onclick="floor_select(2)" src="./images/elevator_btns/elevator-btn-2.png"><br>
-                    <input type="image" class="centered_image" id="btn_1" onclick="floor_select(1)" src="./images/elevator_btns/elevator-btn-1.png">
-                </div>
-                <div class="col-xs-12 col-md-6">
-                    <form action="./php/login.php" method="post" id="login">
-                        <fieldset>
-                            <legend>Login</legend>
-                            <div>
-                                <label for="username" class="form_label">Username:</label>
-                                <input id="username" class="form_input" type="text" name="username">
-                            </div>
-                            <div>
-                                <label for="password" class="form_label">Password:</label>
-                                <input id="password" class="form_input" type="text" name="password">
-                            </div>
-                            <input type="submit" value="Log in">
-                            <p><a href="./request_access.html">Cant login? Request Access</a></p>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>  
+            <h1>Test Plans</h1>
+            <h4>PCBA testing:</h4>
+            <ul>
+                <li>check continuity off all nets, and ensure no nets are shorted</li>
+                <li>inspect all components to ensure they are properly seated</li>
+            </ul>
+            <h4>PCBA, Nucleo, and CAN testing:</h4>
             <div>
-                <a href="./php/demo.php" style="text-decoration:none;">Demo</a><br>
+                <p>
+                    There are two sets of LEDs on the STM32 breakout boards for the floor and car controllers. One set of LEDs is to indicate the elevator's current floor, and the other set is to indicate what floor buttons have been pressed.<br>
+                    <br>
+                    Test firmware process:
+                    <br>
+                    On boot, turn on both floor 1 LEDs<br>
+                    When the floor 1 button is pressed, turn off floor 1 LEDs and turn on floor 2 LEDs<br>
+                    When the floor 2 button is pressed, turn off floor 2 LEDs and turn on floor 3 LEDs<br>
+                    When the floor 3 button is pressed, turn off floor 3 LEDs and turn on floor 1 LEDs<br>
+                    The above cycle then continues as you keep cycling the button presses. This will test that the GPIOs for the buttons and LEDs are configured correctly.<br>
+                    <br>
+                    In order to also test that the CAN bus is configured correctly and to be able to test multiple STMs simultaneously, we will have the STM broadcast on the CAN network that the button was pressed. Then, any other STMs running the test firmware will change their LED states accordingly.<br>
+                    <br>
+                    The CAN commands for the test firmware from the STM32s will be the same as when they are running the normal firmware, except that the 7th bit in the data will be set. This way, the supervisory controller will know not to pass on the command to the elevator controller.<br>
+                    <br>
+                    The main firmware commands are the following:<br>
+                    GO_TO_FLOOR_1 = 0000 0101 = 0x5<br>
+                    GO_TO_FLOOR_2 = 0000 0110 = 0x6<br>
+                    GO_TO_FLOOR_3 = 0000 0111 = 0x7<br>
+                    <br>
+                    The new commands will be the following:<br>
+                    TEST_FLOOR_1 = 1000 0101 = 0x85<br>
+                    TEST_FLOOR_2 = 1000 0110 = 0x86<br>
+                    TEST_FLOOR_3 = 1000 0111 = 0x87<br>
+                </p>
             </div>
-            <audio loop autoplay src="./music/elevator_music.mp3" id="audioElement"></audio>
+            <h4>Nucleo testing:</h4>
+            <ul>
+                <li>Debug logs</li>
+            </ul>
         </div>
 
         <footer>
@@ -71,27 +80,6 @@
             <p>Copyright &copy Wyatt Richard, Noah Grant<br>
         </footer>
     </div>
-
-    <script>
-        function floor_select(floor){
-            document.getElementById("audioElement").play();
-            let btn_1 = document.getElementById("btn_1");
-            let btn_2 = document.getElementById("btn_2");
-            let btn_3 = document.getElementById("btn_3");
-            btn_1.src = "./images/elevator_btns/elevator-btn-1.png"
-            btn_2.src = "./images/elevator_btns/elevator-btn-2.png"
-            btn_3.src = "./images/elevator_btns/elevator-btn-3.png"
-            if(floor==1){
-                btn_1.src = "./images/elevator_btns/elevator-btn-1-grn.png"
-            }
-            else if(floor==2){
-                btn_2.src = "./images/elevator_btns/elevator-btn-2-grn.png"
-            }
-            else if(floor==3){
-                btn_3.src = "./images/elevator_btns/elevator-btn-3-grn.png"
-            }
-        }
-    </script>
     <!--[if lt IE 9]>
         <script src=http://html5shiv.googlecode.com/svn/trunk/html5.js></script>
     <![endif] -->
