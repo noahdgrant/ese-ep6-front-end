@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    <?php $title = "TODO"; include "./common/head.php"; ?>
+    <head>
+        <?php $title = "Project Details"; include "./common/head.php"; ?>
+        <link href="css/project_details_style.css" rel="stylesheet">
+    </head>
     <body>
         <div id="page" class="container">
             <?php include "./common/header.php"; ?>
@@ -60,11 +63,11 @@
 
                 <h2>Milestones</h2>
                 <p>This is a summary of the milestone dates for each phase. A complete breakdown of the detailed tasks in each phase may be found in the <a href="documents/Project_Charter.pdf">Project Charter</a></p>
-            <table>
+                <table>
                     <thead>
                         <tr>
-                        <th>Deadline</th>
-                        <th>Deliverable</th>
+                            <th>Deadline</th>
+                            <th>Deliverable</th>
                         </tr>
                         <tr>
                             <td>Begining of Week 5</td>
@@ -83,8 +86,8 @@
                             <td></td>
                         </tr>
                     </thead>
-                <tbody></tbody>
-                <tfoot></tfoot>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
                 </table>
             </div>
             <?php include "./common/footer.php"; ?>
