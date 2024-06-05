@@ -99,15 +99,15 @@
                     <li><a href="./about.php#intro_vid">Intro Video</a></li>
                     <h2>CSS</h2>
                     <!-- A1Q14 -->
-                    <li></li>
+                    <li><a href="./project_details.php">Project Details Page</a></li>
                     <!-- A1Q15 -->
-                    <li></li>
+                    <li><a href="./css/style.css">CSS Document</a></li>
                     <!-- A1Q16 -->
-                    <li></li>
+                    <li><a href="./project_details.php">Project Details Page</a>, <a href="./css/project_details_style.css">CSS Document</a></li>
                     <!-- A1Q17 -->
-                    <li></li>
+                    <li><a href="./request_access.php">Request Access Page</a></li>
                     <!-- A1Q18 -->
-                    <li></li>
+                    <li><a href="./index.php#login">Request Access Button at Login</a></li>
                     <!-- A1Q19 -->
                     <li></li>
                     <!-- A1Q20 -->

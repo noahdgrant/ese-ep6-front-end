@@ -21,10 +21,15 @@
                             <input id="password" class="form_input" type="text" name="password">
                         </div>
                         <div>
+                            <label for="verify_password" class="form_label">Verify Password:</label>
+                            <input id="verify_password" class="form_input" type="text" name="verify_password">
+                        </div>
+                        <div>
                             <label for="id" class="form_label">ID:</label>
                             <input id="id" class="form_input" type="text" name="id">
                         </div>
-                        <input type="submit" value="Request Access">
+                        <br>
+                        <input type="submit" value="Request Access" id="submit">
                     </fieldset>
                 </form>  
             </div>
