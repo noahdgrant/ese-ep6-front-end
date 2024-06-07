@@ -67,6 +67,8 @@
                 <li>Continued front end development for server</li>
                     <ul>
                         <li>Continued Implementing CSS and javascript</li>
+                        <li>Added form validation</li>
+                        <li>Started Working on arduino NFC & socket code</li>
                     </ul>
                 <h2 id="week6">Week 6</h2>
                 <h2 id="week7">Week 7</h2>

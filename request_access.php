@@ -28,10 +28,16 @@
                             <label for="conestoga_id" class="form_label">Conestoga ID:</label>
                             <input id="conestoga_id" class="form_input" type="text" name="conestoga_id">
                         </div>
+                        <div>
+                            <p id="email_errror_msg"></p>
+                            <p id="user_errror_msg"></p>
+                            <p id="pswd_errror_msg"></p>
+                            <p id="pswd_vf_errror_msg"></p>
+                        </div>
                         <br>
                         <input type="submit" value="Request Access" id="submit">
                     </fieldset>
-                </form>  
+                </form>
             </div>
             <?php include "./common/footer.php"; ?>
         </div>
