@@ -111,7 +111,7 @@
                     <!-- A1Q19 -->
                     <li></li>
                     <!-- A1Q20 -->
-                    <li></li>
+                    <li>See common/ for how bootstrap is integrated</li>
                     <!-- A1Q21 -->
                     <li></li>
                     <!-- A1Q22 -->
