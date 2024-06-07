@@ -28,6 +28,10 @@
                             <label for="conestoga_id" class="form_label">Conestoga ID:</label>
                             <input id="conestoga_id" class="form_input" type="text" name="conestoga_id">
                         </div>
+                        <br>
+                        <div>
+                            <textarea></textarea>
+                        </div>
                         <div>
                             <p id="email_errror_msg"></p>
                             <p id="user_errror_msg"></p>

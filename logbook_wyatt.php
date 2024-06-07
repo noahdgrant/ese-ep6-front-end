@@ -11,6 +11,10 @@
                     <figcaption>Wyatt</figcaption>
                 </figure>
                 <br>
+                <h2>About me:</h2>
+                <p>I am <span id="age"></span> years old.</p>
+
+                <h2>Weekly Logs:</h2>
                 <ul>
                     <li><a href="#week1">Week 1: May 6th - May 10th</a></li>
                     <li><a href="#week2">Week 2: May 13th - May 17th</a></li>

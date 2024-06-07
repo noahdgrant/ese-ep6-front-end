@@ -51,6 +51,10 @@ nav a{
     width: 20%;
 }
 
+.centered_text{
+    text-align: center;
+}
+
 #content {
     margin-top: 70px; /* Add a top margin to avoid content overlay */
 }
