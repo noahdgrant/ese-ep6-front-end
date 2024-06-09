@@ -31,7 +31,7 @@
                                 <br>
                                 <input type="submit" value="Log in" id="submit">
                                 <br><br>
-                                <p><a href="./request_access.php">Cant login? Request Access</a></p>
+                                <a href="./request_access.php"><button>Can't login? Request Access</button></a>
                             </fieldset>
                         </form>
                     </div>

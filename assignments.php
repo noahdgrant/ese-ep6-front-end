@@ -107,7 +107,7 @@
                     <!-- A1Q17 -->
                     <li><a href="./request_access.php">Request Access Page</a></li>
                     <!-- A1Q18 -->
-                    <li><a href="./index.php#login">Request Access Button at Login</a> - <b>Not Done yet</b></li>
+                    <li><a href="./index.php#login">Request Access Button at Login</a></li>
                     <!-- A1Q19 -->
                     <li>All pages structured using HTML5 layout elements and 'header, section, footer, aside, nav, article, figure {display: block;}' included in css
                     </li>

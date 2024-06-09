@@ -15,6 +15,18 @@ fieldset{
     width: 315px;
 }
 
+button:link{
+    color:black;
+}
+
+button:hover{
+    background:Gainsboro;
+}
+
+button:active{
+    background:grey;
+}
+
 input[type=text]{
     color:grey;
 }
