@@ -4,7 +4,7 @@ $submitted = !empty($_POST);
 
 <!DOCTYPE html>
 <html lang="en">
-    <?php $title = "TODO"; include "./common/head.php"; ?>
+    <?php $title = "Access Requested"; include "./common/head.php"; ?>
     <body>
         <div id="page" class="container">
             <?php include "./common/header.php"; ?>

@@ -1,8 +1,12 @@
 body {
     font-family: Georgia, Times, "Times New Roman", serif;
+    width: 950px;
+	padding: 0px 10px 0px 10px;
+	margin: 0px auto 0px auto;
+	border: 2px solid black;
 }
 
-p, ul, ol {
+p, li {
     font-size: 100%;
     line-height: 20px;
     text-align: justify;
@@ -22,18 +26,36 @@ h2 {
 
 img {
     height: 300px;
+    border: 2px solid blue;
+    margin: 0px auto 0px auto;
+    display: block;
+    box-shadow: -10px 10px 5px gray;
 }
 
-figure figcaption {
+figcaption {
     text-align: center;
     font-style: italic;
     font-size: 90%;
 }
 
-h1 {
-    color: blue;
+figure{
+    padding: 0px auto 0px auto;
+    border: 2px solid green;
+    border-radius: 25px;
 }
 
-p {
-    color: red;
+.mkbold {
+    font-weight: bold;
+}
+
+.mkunderlined{
+    text-decoration: underline;
+}
+
+#hcs12{
+    font-weight: bold;
+}
+
+#can{
+    font-weight: bold;
 }

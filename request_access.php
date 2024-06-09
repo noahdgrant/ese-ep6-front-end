@@ -5,7 +5,7 @@
         <div id="page" class="container">
             <?php include "./common/header.php"; ?>
             <div id="content">
-                <form action="./access_requested.php" method="post" id="login">
+                <form action="./access_requested.php" method="post" id="request_access">
                     <fieldset>
                         <legend>Request Access</legend>
                         <div>
@@ -18,18 +18,35 @@
                         </div>
                         <div>
                             <label for="password" class="form_label">Password:</label>
-                            <input id="password" class="form_input" type="text" name="password">
+                            <input id="password" class="form_input" type="password" name="password">
                         </div>
                         <div>
-                            <label for="id" class="form_label">ID:</label>
-                            <input id="id" class="form_input" type="text" name="id">
+                            <label for="verify_password" class="form_label">Verify Password:</label>
+                            <input id="verify_password" class="form_input" type="password" name="verify_password">
                         </div>
-                        <input type="submit" value="Request Access">
+                        <div>
+                            <label for="conestoga_id" class="form_label">Conestoga ID:</label>
+                            <input id="conestoga_id" class="form_input" type="text" name="conestoga_id">
+                        </div>
+                        <br>
+                        <div>
+                            <textarea id="additional_info"></textarea>
+                            <p id="char_left"></p>
+                        </div>
+                        <div>
+                            <p id="email_errror_msg"></p>
+                            <p id="user_errror_msg"></p>
+                            <p id="pswd_errror_msg"></p>
+                            <p id="pswd_vf_errror_msg"></p>
+                        </div>
+                        <br>
+                        <input type="submit" value="Request Access" id="submit">
                     </fieldset>
-                </form>  
+                </form>
             </div>
             <?php include "./common/footer.php"; ?>
         </div>
         <?php include "./common/bottom.php"; ?>
+        <script src="js/request_access.js"></script>
     </body>
 </html>

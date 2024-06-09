@@ -99,31 +99,32 @@
                     <li><a href="./about.php#intro_vid">Intro Video</a></li>
                     <h2>CSS</h2>
                     <!-- A1Q14 -->
-                    <li></li>
+                    <li><a href="./project_details.php">Project Details Page</a></li>
                     <!-- A1Q15 -->
-                    <li></li>
+                    <li><a href="./css/style.css">CSS Document</a></li>
                     <!-- A1Q16 -->
-                    <li></li>
+                    <li><a href="./project_details.php">Project Details Page</a>, <a href="./css/project_details_style.css">CSS Document</a></li>
                     <!-- A1Q17 -->
-                    <li></li>
+                    <li><a href="./request_access.php">Request Access Page</a></li>
                     <!-- A1Q18 -->
-                    <li></li>
+                    <li><a href="./index.php#login">Request Access Button at Login</a> - <b>Not Done yet</b></li>
                     <!-- A1Q19 -->
-                    <li></li>
+                    <li>All pages structured using HTML5 layout elements and 'header, section, footer, aside, nav, article, figure {display: block;}' included in css
+                    </li>
                     <!-- A1Q20 -->
-                    <li></li>
+                    <li>Bootstrap included in all pages (used for navbar), grid system can be seen used on <a href="./index.php">home</a> page </li>
                     <!-- A1Q21 -->
-                    <li></li>
+                    <li>Age included in <a href="./logbook_wyatt.php#age">about section of logbook</a>, year included in <a href = "#footer">footer</a> of all pages</li>
                     <!-- A1Q22 -->
-                    <li></li>
+                    <li>Current date and time on <a href="./index.php#current_time">home page</a></li>
                     <!-- A1Q23 -->
-                    <li></li>
+                    <li>Form validation on username and password added to <a href="./index.php#current_time">home page</a></li>
                     <!-- A1Q24 -->
-                    <li></li>
+                    <li><a href="./index.php">Home page</a> focus on username field on page load</li>
                     <!-- A1Q25 -->
-                    <li></li>
+                    <li>Text area in <a href="./request_access.php">request access</a> page has character limit of 180</li>
                     <!-- A1Q26 -->
-                    <li></li>
+                    <li>form validation on inputs in <a href="./request_access.php"> requst access</a> page</li>
                 </ol>
             </div>
             <?php include "./common/footer.php"; ?>

@@ -7,6 +7,9 @@
 
             <div id="content">
                 <img src="images/4WyattNoahWithLove.png" alt=“Group_logo” title=“Group_logo” class="centered_image"/>
+                <div>
+                    <p id="current_date" class="centered_text"></p>
+                </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
                         <input type="image" class="centered_image" id="btn_3" onclick="floor_select(3)" src="./images/elevator_btns/elevator-btn-3.png"><br>
@@ -18,45 +21,32 @@
                             <fieldset>
                                 <legend>Login</legend>
                                 <div>
-                                    <label for="username" class="form_label">Username:</label>
+                                    <label for="username" class="form_label">Username: </label>
                                     <input id="username" class="form_input" type="text" name="username">
                                 </div>
                                 <div>
                                     <label for="password" class="form_label">Password:</label>
-                                    <input id="password" class="form_input" type="text" name="password">
+                                    <input id="password" class="form_input" type="password" name="password">
                                 </div>
-                                <input type="submit" value="Log in">
-                                <p><a href="./request_access.php">Cant login? Request Access</a></p>
+                                <br>
+                                <input type="submit" value="Log in" id="submit">
+                                <br><br>
+
+                                <a href="./request_access.php" id="request_access_link">Can't login? Request Access</a>
+                                <div>
+                                    <p id="user_errror_msg"></p>
+                                    <p id="pswd_errror_msg"></p>
+                                </div>
                             </fieldset>
                         </form>
                     </div>
                 </div>  
-                <audio loop autoplay src="./music/elevator_music.mp3" id="audioElement"></audio>
+                <audio loop src="./music/elevator_music.mp3" id="audioElement"></audio>
             </div>
             <?php include "./common/footer.php"; ?>
         </div>
 
-        <script>
-        function floor_select(floor) {
-            document.getElementById("audioElement").play();
-            let btn_1 = document.getElementById("btn_1");
-            let btn_2 = document.getElementById("btn_2");
-            let btn_3 = document.getElementById("btn_3");
-            btn_1.src = "./images/elevator_btns/elevator-btn-1.png"
-            btn_2.src = "./images/elevator_btns/elevator-btn-2.png"
-            btn_3.src = "./images/elevator_btns/elevator-btn-3.png"
-            if (floor==1) {
-                btn_1.src = "./images/elevator_btns/elevator-btn-1-grn.png"
-            }
-            else if (floor==2) {
-                btn_2.src = "./images/elevator_btns/elevator-btn-2-grn.png"
-            }
-            else if(floor==3){
-                btn_3.src = "./images/elevator_btns/elevator-btn-3-grn.png"
-            }
-        }
-        </script>
-
+        <script src="./js/login.js"></script>
         <?php include("./common/bottom.php");?>
     </body>
 </html>
