@@ -31,9 +31,8 @@
                                 <br>
                                 <input type="submit" value="Log in" id="submit">
                                 <br><br>
-                                <p><a href="./request_access.php">Cant login? Request Access</a></p>
-                                <a href="./request_access.php"><button>Can't login? Request Access</button></a>
 
+                                <a href="./request_access.php" id="request_access_link">Can't login? Request Access</a>
                                 <div>
                                     <p id="user_errror_msg"></p>
                                     <p id="pswd_errror_msg"></p>
