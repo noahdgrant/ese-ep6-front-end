@@ -26,12 +26,18 @@
                                 </div>
                                 <div>
                                     <label for="password" class="form_label">Password:</label>
-                                    <input id="password" class="form_input" type="text" name="password">
+                                    <input id="password" class="form_input" type="password" name="password">
                                 </div>
                                 <br>
                                 <input type="submit" value="Log in" id="submit">
                                 <br><br>
+                                <p><a href="./request_access.php">Cant login? Request Access</a></p>
                                 <a href="./request_access.php"><button>Can't login? Request Access</button></a>
+
+                                <div>
+                                    <p id="user_errror_msg"></p>
+                                    <p id="pswd_errror_msg"></p>
+                                </div>
                             </fieldset>
                         </form>
                     </div>

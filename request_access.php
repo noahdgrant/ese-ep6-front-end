@@ -30,7 +30,8 @@
                         </div>
                         <br>
                         <div>
-                            <textarea></textarea>
+                            <textarea id="additional_info"></textarea>
+                            <p id="char_left"></p>
                         </div>
                         <div>
                             <p id="email_errror_msg"></p>

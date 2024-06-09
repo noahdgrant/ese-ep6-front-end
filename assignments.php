@@ -107,7 +107,7 @@
                     <!-- A1Q17 -->
                     <li><a href="./request_access.php">Request Access Page</a></li>
                     <!-- A1Q18 -->
-                    <li><a href="./index.php#login">Request Access Button at Login</a></li>
+                    <li><a href="./index.php#login">Request Access Button at Login</a> - <b>Not Done yet</b></li>
                     <!-- A1Q19 -->
                     <li>All pages structured using HTML5 layout elements and 'header, section, footer, aside, nav, article, figure {display: block;}' included in css
                     </li>
@@ -118,11 +118,11 @@
                     <!-- A1Q22 -->
                     <li>Current date and time on <a href="./index.php#current_time">home page</a></li>
                     <!-- A1Q23 -->
-                    <li></li>
+                    <li>Form validation on username and password added to <a href="./index.php#current_time">home page</a></li>
                     <!-- A1Q24 -->
                     <li><a href="./index.php">Home page</a> focus on username field on page load</li>
                     <!-- A1Q25 -->
-                    <li></li>
+                    <li>Text area in <a href="./request_access.php">request access</a> page has character limit of 180</li>
                     <!-- A1Q26 -->
                     <li>form validation on inputs in <a href="./request_access.php"> requst access</a> page</li>
                 </ol>

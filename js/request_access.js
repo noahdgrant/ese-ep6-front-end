@@ -1,27 +1,26 @@
 // Javascript for validating information when someone requests access
 
-const MIN_LENGTH = 5;
+const MIN_LENGTH = 7;
 
-var form;
-var email;
-var username;
-var password;
-var verify_password;
+var form = document.getElementById("request_access");
+var email = document.getElementById("email");
+var username = document.getElementById("username");
+var password = document.getElementById("password");
+var verify_password = document.getElementById("verify_password");
+var additional_info = document.getElementById("additional_info");
+
 var username_feedback;
 var password_feedback;
 var verify_password_feedback;
 
-form = document.getElementById("request_access");
-email = document.getElementById("email");
-username = document.getElementById("username");
-password = document.getElementById("password");
-verify_password = document.getElementById("verify_password");
 
 form.addEventListener("submit", function(e) {validate_information(e);}, false);
 email.addEventListener("keyup", function(e) {validate_email(e);}, false);
 username.addEventListener("keyup", function(e) {validate_username(e);}, false);
 password.addEventListener("keyup", function(e) {validate_password(e);}, false);
 verify_password.addEventListener("keyup", function(e) {validate_verify_password(e);}, false);
+additional_info.addEventListener("input", function(e) {validate_additional_info(e);}, false);
+
 
 function validate_email(e) {
     document.getElementById("email_errror_msg").innerHTML ="";
@@ -30,7 +29,7 @@ function validate_email(e) {
 
     if (!email.value.endsWith("@conestogac.on.ca")) {
         document.getElementById("email_errror_msg").innerHTML = "<b>Invalid Email</b><br>Must provide a valid Conestoga College email.";
-        if(e=="submit"){
+        if(e.submitter.id == "submit"){
             e.preventDefault();
         }
     }
@@ -53,7 +52,7 @@ function validate_username(e) {
     // Print error
     if (error) {
         document.getElementById("user_errror_msg").innerHTML =error_msg;
-        if(e=="submit"){
+        if(e.submitter.id == "submit"){
             e.preventDefault();
         }
     }
@@ -94,7 +93,7 @@ function validate_password(e) {
     
     if (error) {
         document.getElementById("pswd_errror_msg").innerHTML += error_msg;
-        if(e=="submit"){
+        if(e.submitter.id == "submit"){
             e.preventDefault();
         }
     }
@@ -104,7 +103,7 @@ function validate_verify_password(e) {
     document.getElementById("pswd_vf_errror_msg").innerHTML ="";
     if (password.value != verify_password.value) {
         document.getElementById("pswd_vf_errror_msg").innerHTML ="Passwords don't match.";
-        if(e=="submit"){
+        if(e.submitter.id == "submit"){
             e.preventDefault();
         }
     }
@@ -115,4 +114,13 @@ function validate_information(e) {
     validate_username(e);
     validate_password(e);
     validate_verify_password(e);
+}
+
+function validate_additional_info(e){
+    let textEntered = document.getElementById('additional_info').value;
+    let char_left = document.getElementById('char_left');
+    let char_limit = 180;
+    textEntered = textEntered.substring(0, char_limit);
+    document.getElementById('additional_info').value = textEntered
+    char_left.innerHTML = char_limit - textEntered.length;
 }

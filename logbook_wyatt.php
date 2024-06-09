@@ -68,13 +68,25 @@
                     <li>Finished draw.io FSM</li>
                 </ul>
                 <h2 id="week5">Week 5</h2>
-                <li>Continued front end development for server</li>
+                <ul>
+                    <li>Continued front end development for server</li>
                     <ul>
                         <li>Continued Implementing CSS and javascript</li>
                         <li>Added form validation</li>
                         <li>Started Working on arduino NFC & socket code</li>
                     </ul>
+                </ul>
+
                 <h2 id="week6">Week 6</h2>
+                <ul>
+                    <li>Continued front end development for server</li>
+                    <ul>
+                        <li>Continued Implementing CSS and javascript</li>
+                        <li>Added form validation to login poge</li>
+                        <li>Added additional info field to request access page</li>
+                    </ul>
+                    <li>Finished first version of NFC socket code</li>
+                </ul>
                 <h2 id="week7">Week 7</h2>
                 <h2 id="week8">Week 8</h2>
                 <ul>
