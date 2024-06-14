@@ -82,7 +82,7 @@
                     <li>Continued front end development for server</li>
                     <ul>
                         <li>Continued Implementing CSS and javascript</li>
-                        <li>Added form validation to login poge</li>
+                        <li>Added form validation to login page</li>
                         <li>Added additional info field to request access page</li>
                     </ul>
                     <li>Finished first version of NFC socket code</li>

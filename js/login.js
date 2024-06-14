@@ -57,8 +57,8 @@ function validate_username(e) {
 
     // Print error
     if (error) {
-        document.getElementById("user_errror_msg").innerHTML =error_msg;
-        if(e.submitter.id == "submit"){
+        document.getElementById("user_errror_msg").innerHTML = error_msg;
+        if(e.submitter?.id == "submit"){
             e.preventDefault();
         }
     }
@@ -80,7 +80,7 @@ function validate_password(e) {
     
     if (error) {
         document.getElementById("pswd_errror_msg").innerHTML += error_msg;
-        if(e.submitter.id == "submit"){
+        if(e.submitter?.id == "submit"){
             e.preventDefault();
         }
     }
