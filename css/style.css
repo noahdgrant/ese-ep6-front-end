@@ -55,6 +55,10 @@ nav a{
     text-align: center;
 }
 
+#active {
+    font-weight: bold;
+}
+
 #content {
     margin-top: 70px; /* Add a top margin to avoid content overlay */
 }
