@@ -1,5 +1,5 @@
 <?php
-    $file_path = './json/users.json';
+    $file_path = '../json/users.json';
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $contents = file_get_contents($file_path);
