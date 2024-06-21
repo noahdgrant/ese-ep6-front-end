@@ -88,6 +88,10 @@
                     <li>Finished first version of NFC socket code</li>
                 </ul>
                 <h2 id="week7">Week 7</h2>
+                <ul>
+                    <li>Implemented Ajax functions</li>
+                    <li>Finished NFC socket server code</li>
+                </ul>
                 <h2 id="week8">Week 8</h2>
                 <ul>
                     <li>Reading Week</li>

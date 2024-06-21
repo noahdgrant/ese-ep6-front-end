@@ -2,6 +2,9 @@
 $pidFile = __DIR__ . '/tmp/php_server.pid'; // Use current directory for PID file
 ob_implicit_flush(true);
 
+// Allow the script to hang around waiting for connections.
+set_time_limit(0);
+
 // Check if server is already running
 if (file_exists($pidFile)) {
     die('Server is already running. <br>');
