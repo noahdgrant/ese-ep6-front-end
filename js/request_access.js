@@ -29,7 +29,7 @@ function validate_email(e) {
 
     if (!email.value.endsWith("@conestogac.on.ca")) {
         document.getElementById("email_errror_msg").innerHTML = "<b>Invalid Email</b><br>Must provide a valid Conestoga College email.";
-        if(e.submitter.id == "submit"){
+        if(e.submitter?.id == "submit"){
             e.preventDefault();
         }
     }
@@ -52,7 +52,7 @@ function validate_username(e) {
     // Print error
     if (error) {
         document.getElementById("user_errror_msg").innerHTML =error_msg;
-        if(e.submitter.id == "submit"){
+        if(e.submitter?.id == "submit"){
             e.preventDefault();
         }
     }
@@ -93,7 +93,7 @@ function validate_password(e) {
     
     if (error) {
         document.getElementById("pswd_errror_msg").innerHTML += error_msg;
-        if(e.submitter.id == "submit"){
+        if(e.submitter?.id == "submit"){
             e.preventDefault();
         }
     }
@@ -103,7 +103,7 @@ function validate_verify_password(e) {
     document.getElementById("pswd_vf_errror_msg").innerHTML ="";
     if (password.value != verify_password.value) {
         document.getElementById("pswd_vf_errror_msg").innerHTML ="Passwords don't match.";
-        if(e.submitter.id == "submit"){
+        if(e.submitter?.id == "submit"){
             e.preventDefault();
         }
     }
