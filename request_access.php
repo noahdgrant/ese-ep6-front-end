@@ -34,10 +34,6 @@ session_start();
                         </div>
                         <br>
                         <div>
-                            <textarea id="additional_info"></textarea>
-                            <p id="char_left"></p>
-                        </div>
-                        <div>
                             <p id="email_errror_msg"></p>
                             <p id="user_errror_msg"></p>
                             <p id="pswd_errror_msg"></p>

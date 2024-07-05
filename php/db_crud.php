@@ -3,11 +3,8 @@
     $username = getenv('MYSQL_USERNAME');
     $password = getenv('MYSQL_PASSWORD');
 
-    $login_user = array(
-        'username' => 'wyatt',
-        'password' => 'password_test'
-    );
-
+    echo $username;
+    /*
     // Connect to database
     $database = new PDO($servername, $username, $password);
 
@@ -23,4 +20,5 @@
 
     // Close connection
     $database = null;
+    */
 ?>
