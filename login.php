@@ -32,21 +32,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['username'] = $login_user['username'];
     }
     else{
+        session_unset();
         session_destroy();
-        include "./common/invalid_login.php";
-        die();
     }
     // https://www.php.net/manual/en/function.password-hash.php
     // https://www.php.net/manual/en/function.password-verify.php
+
     // Close connection
     $database = null;
 }
-
-if(isset($_SESSION['username'])){
-    include "./common/valid_login.php";
+else if (isset($_GET["request"])) {
+    if ($_GET['request']==='logout'){
+        session_unset();
+        session_destroy(); 
+    }
 }
-else{
-    include "./common/invalid_login.php";
-}
+header("Location: ./index.php");
 
 ?>
