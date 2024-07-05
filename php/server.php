@@ -4,8 +4,7 @@
 * to C:\xampp\php\php.ini
 */
 
-$host  = '192.168.1.212';
-//$host = '192.168.2.187';
+$host = '192.168.1.201';
 $port = 12345;
 $pidFile = __DIR__ . '/tmp/php_server.pid'; // Use current directory for PID file
 
