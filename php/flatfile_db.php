@@ -21,7 +21,7 @@
 
         foreach ($php_array['users'] as $user) {
             if ($user['id'] === $new_user['id']) {
-                die('Error: A user with the same ID already exists.');
+                die(json_encode(array('success' => 'false', 'message' => 'Error: A user with the same ID already exists.')));
             }
         }
 

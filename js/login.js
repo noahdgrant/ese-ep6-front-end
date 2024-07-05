@@ -27,15 +27,10 @@ window.addEventListener("load", (event) => {
 
 const MIN_LENGTH = 5;
 
-var form;
-var username;
-var password;
-var username_feedback;
-var password_feedback;
 
-form = document.getElementById("login");
-username = document.getElementById("username");
-password = document.getElementById("password");
+var form = document.getElementById("login");
+var username = document.getElementById("username");
+var password = document.getElementById("password");
 
 form.addEventListener("submit", function(e) {validate_information(e);}, false);
 username.addEventListener("keyup", function(e) {validate_username(e);}, false);
@@ -58,7 +53,7 @@ function validate_username(e) {
     // Print error
     if (error) {
         document.getElementById("user_errror_msg").innerHTML = error_msg;
-        if(e.submitter?.id == "submit"){
+        if(e.submitter?.id === "submit"){
             e.preventDefault();
         }
     }
@@ -80,7 +75,7 @@ function validate_password(e) {
     
     if (error) {
         document.getElementById("pswd_errror_msg").innerHTML += error_msg;
-        if(e.submitter?.id == "submit"){
+        if(e.submitter?.id === "submit"){
             e.preventDefault();
         }
     }

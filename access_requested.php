@@ -1,4 +1,8 @@
 <?php
+session_start();
+?>
+
+<?php
 $submitted = !empty($_POST);
 ?>
 

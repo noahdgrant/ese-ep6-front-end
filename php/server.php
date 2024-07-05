@@ -19,20 +19,19 @@ file_put_contents($pidFile,  getmypid());
 // Allow the script to hang around waiting for connections.
 set_time_limit(0);
 
-$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP) or die();
+$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP) or die(json_encode(array('success' => 'false', 'message' => 'Error: could not create socket.')));;
 
 function shutdown() {
     global $socket;
     if ($socket) {
         socket_close($socket);
-        //echo "Socket closed.\n";
     }
 }
 register_shutdown_function('shutdown');
 
-$result = socket_bind($socket, $host, $port) or die();
+socket_bind($socket, $host, $port) or die(json_encode(array('success' => 'false', 'message' => 'Error: Couldnt bind socket.')));;
 
-$result = socket_listen($socket, 5) or die();
+socket_listen($socket, 5) or die(json_encode(array('success' => 'false', 'message' => 'Error: Cannot listen to scoket.')));;
 
 do {
     $client_socket = socket_accept($socket);

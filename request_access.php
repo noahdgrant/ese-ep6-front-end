@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <?php $title = "Request Access"; include "./common/head.php"; ?>
