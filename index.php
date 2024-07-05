@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <?php $title = "Home"; include "./common/head.php"; ?>
@@ -31,7 +35,6 @@
                                 <br>
                                 <input type="submit" value="Log in" id="submit">
                                 <br><br>
-
                                 <a href="./request_access.php" id="request_access_link">Can't login? Request Access</a>
                                 <div>
                                     <p id="user_errror_msg"></p>

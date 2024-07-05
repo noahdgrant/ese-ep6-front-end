@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <?php $title = "Project Plan"; include "./common/head.php"; ?>

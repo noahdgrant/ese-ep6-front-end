@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <?php $title = "Wyatt's Logbook"; include "./common/head.php"; ?>
@@ -97,6 +101,10 @@
                     <li>Reading Week</li>
                 </ul>
                 <h2 id="week9">Week 9</h2>
+                <ul>
+                    <li>Set up PHP sessions</li>
+                    <li>Started working on login and sysql db for frontend</li>
+                </ul>
                 <h2 id="week10">Week 10</h2>
                 <h2 id="week11">Week 11</h2>
                 <h2 id="week12">Week 12</h2>

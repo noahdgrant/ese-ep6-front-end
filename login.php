@@ -1,23 +1,52 @@
 <?php
-$submitted = !empty($_POST);
-?>
+session_start();
+// this info should be environment variables
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $servername = "mysql:host=127.0.0.1;dbname=users";
+    $username = getenv('MYSQL_USERNAME');
+    $password = getenv('MYSQL_PASSWORD');
+    $login_table = "accounts";
 
-<!DOCTYPE html>
-<html lang="en">
-    <?php $title = "TODO"; include "./common/head.php"; ?>
-    <body>
-        <div id="page" class="container">
-            <?php include "./common/header.php"; ?>
-            <div id="content">
-                <p>Form Submitted? <?php echo (int) $submitted; ?></p>
-                <p>Your login info is</p>
-                <ul>
-                    <li>Username: <?php echo $_POST['username']; ?></li>
-                    <li>Password: <?php echo $_POST['password'];?></li>
-                </ul>
-            </div>
-            <?php include "./common/footer.php"; ?>
-        </div>
-        <?php include "./common/bottom.php"; ?>
-    </body>
-</html>
+    $login_user = array(
+        'username' => $_POST['username'],
+        'password' => $_POST['password']
+    );
+
+    // Connect to database
+    $database = new PDO($servername, $username, $password);
+
+    // should have a check to ensure we are connected to the database
+
+    $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+    // Query database for password
+    $query = "SELECT password FROM accounts WHERE username = :username";
+    $statement = $database->prepare($query);
+    $statement ->bindParam(':username', $login_user['username'], PDO::PARAM_STR);
+    $result = $statement ->execute();
+
+    $storedPassword = $statement->fetchColumn();
+
+    if ($storedPassword === $login_user['password']){
+        // start session
+        $_SESSION['username'] = $login_user['username'];
+    }
+    else{
+        session_destroy();
+        include "./common/invalid_login.php";
+        die();
+    }
+    // https://www.php.net/manual/en/function.password-hash.php
+    // https://www.php.net/manual/en/function.password-verify.php
+    // Close connection
+    $database = null;
+}
+
+if(isset($_SESSION['username'])){
+    include "./common/valid_login.php";
+}
+else{
+    include "./common/invalid_login.php";
+}
+
+?>

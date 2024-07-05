@@ -7,7 +7,7 @@ set_time_limit(0);
 
 // Check if server is already running
 if (file_exists($pidFile)) {
-    die('Server is already running. <br>');
+    die(json_encode(array('success' => 'false', 'message' => 'Error: Server is already running.')));
 }
 
 // Determine the correct command to start the server
@@ -19,6 +19,6 @@ if (strncasecmp(PHP_OS, 'WIN', 3) == 0) {
     $command = 'php -f server.php > /dev/null 2>&1 & echo $!';
 }
 // Execute the command and save the PID
-echo 'Server started. <br>';
+echo json_encode(array('success' => 'true', 'message' => 'Server started.'));
 shell_exec($command);
 ?>
