@@ -1,24 +1,16 @@
 <?php
-    $servername = "mysql:host=127.0.0.1;dbname=users";
+    $servername = "mysql:host=127.0.0.1;dbname=ElevatorOne";
     $username = getenv('MYSQL_USERNAME');
     $password = getenv('MYSQL_PASSWORD');
 
-    echo $username;
-    /*
     // Connect to database
     $database = new PDO($servername, $username, $password);
 
     $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-    $result = $database->query("SELECT Username, Password FROM accounts WHERE Username = '" . $login_user['username']."'");
+    $result = $database->query("INSERT INTO RequestHistory (Method, Floor) VALUES ('Website', 2)");
     
-    foreach($result as $row){
-        echo "Username: " . $row["Username"]. " - Password: " . $row["Password"]. "<br><br>";
-    }
-
-    
-
     // Close connection
     $database = null;
-    */
+    
 ?>

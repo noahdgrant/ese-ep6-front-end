@@ -36,3 +36,6 @@ to access the variables in php simply use the following code:
 
 \$db_password = getenv('MYSQL_PASSWORD');
 $db_username = getenv('MYSQL_USERNAME');
+
+#### File permissions
+Ensure json/cardread.json and php/tmp have read/write permissions
