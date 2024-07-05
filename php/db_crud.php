@@ -7,7 +7,10 @@
     $database = new PDO($servername, $username, $password);
 
     $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    if(isset($_POST["floor"])){
+
+    echo "isset response: " . isset($_POST['floor']) . ", floor value: " . $_POST['floor'];
+
+    if(isset($_POST['floor'])){
         if($_POST['floor']==='1'){
             $result = $database->query("INSERT INTO RequestHistory (Method, Floor) VALUES ('Website', 1)");
         }

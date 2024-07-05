@@ -22,6 +22,7 @@ session_start();
                             <input type="image" class="centered_image" id="btn_3" onclick="floor_select(3)" src="./images/elevator_btns/elevator-btn-3.png"><br>
                             <input type="image" class="centered_image" id="btn_2" onclick="floor_select(2)" src="./images/elevator_btns/elevator-btn-2.png"><br>
                             <input type="image" class="centered_image" id="btn_1" onclick="floor_select(1)" src="./images/elevator_btns/elevator-btn-1.png">
+                            <p id="debug"></p>
                         </div>
                         EOT;
                     }

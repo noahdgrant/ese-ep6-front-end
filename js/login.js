@@ -12,7 +12,7 @@ function floor_select(floor) {
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 // Typical action to be performed when the document is ready:
-                // document.getElementById("users").innerHTML = xhttp.responseText;
+                document.getElementById("degub").innerHTML = xhttp.responseText;
             }
         };
         xhttp.open("POST", "./php/db_crud.php", true);
@@ -25,7 +25,7 @@ function floor_select(floor) {
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 // Typical action to be performed when the document is ready:
-                // document.getElementById("users").innerHTML = xhttp.responseText;
+                document.getElementById("debug").innerHTML = xhttp.responseText;
             }
         };
         xhttp.open("POST", "./php/db_crud.php", true);
@@ -38,7 +38,7 @@ function floor_select(floor) {
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 // Typical action to be performed when the document is ready:
-                // document.getElementById("users").innerHTML = xhttp.responseText;
+                document.getElementById("debug").innerHTML = xhttp.responseText;
             }
         };
         xhttp.open("POST", "./php/db_crud.php", true);
@@ -47,7 +47,7 @@ function floor_select(floor) {
     }
 }
 
-
+// this wont work if already logged in
 window.addEventListener("load", (event) => {
     // if not logged in:
     document.getElementById("username").focus();
