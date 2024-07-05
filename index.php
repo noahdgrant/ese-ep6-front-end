@@ -62,6 +62,56 @@ session_start();
         </div>
 
         <script src="./js/login.js"></script>
+        <script>
+            function floor_select(floor) {
+                document.getElementById("audioElement").play();
+                let btn_1 = document.getElementById("btn_1");
+                let btn_2 = document.getElementById("btn_2");
+                let btn_3 = document.getElementById("btn_3");
+                btn_1.src = "./images/elevator_btns/elevator-btn-1.png"
+                btn_2.src = "./images/elevator_btns/elevator-btn-2.png"
+                btn_3.src = "./images/elevator_btns/elevator-btn-3.png"
+                if (floor==1) {
+                    btn_1.src = "./images/elevator_btns/elevator-btn-1-grn.png"
+                    let xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            // Typical action to be performed when the document is ready:
+                            document.getElementById("debug").innerHTML = xhttp.responseText;
+                        }
+                    };
+                    xhttp.open("POST", "./php/db_crud.php", true);
+                    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhttp.send("floor="+encodeURIComponent("1"));
+                }
+                else if (floor==2) {
+                    btn_2.src = "./images/elevator_btns/elevator-btn-2-grn.png"
+                    let xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            // Typical action to be performed when the document is ready:
+                            document.getElementById("debug").innerHTML = xhttp.responseText;
+                        }
+                    };
+                    xhttp.open("POST", "./php/db_crud.php", true);
+                    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhttp.send("floor="+encodeURIComponent("2"));
+                }
+                else if(floor==3){
+                    btn_3.src = "./images/elevator_btns/elevator-btn-3-grn.png"
+                    let xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            // Typical action to be performed when the document is ready:
+                            document.getElementById("debug").innerHTML = xhttp.responseText;
+                        }
+                    };
+                    xhttp.open("POST", "./php/db_crud.php", true);
+                    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                    xhttp.send("floor="+encodeURIComponent("3"));
+                }
+            }
+        </script>
         <?php include("./common/bottom.php");?>
     </body>
 </html>
