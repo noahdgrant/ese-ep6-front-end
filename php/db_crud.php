@@ -7,8 +7,21 @@
     $database = new PDO($servername, $username, $password);
 
     $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    if(isset($_POST["floor"])){
+        if($_POST['floor']==='1'){
+            $result = $database->query("INSERT INTO RequestHistory (Method, Floor) VALUES ('Website', 1)");
+        }
+        
+        else if($_POST['floor']==='2'){
+            $result = $database->query("INSERT INTO RequestHistory (Method, Floor) VALUES ('Website', 2)");
+        }
+    
+        else if($_POST['floor']==='3'){
+            $result = $database->query("INSERT INTO RequestHistory (Method, Floor) VALUES ('Website', 3)");
+        }
+    }
+    
 
-    $result = $database->query("INSERT INTO RequestHistory (Method, Floor) VALUES ('Website', 2)");
     
     // Close connection
     $database = null;

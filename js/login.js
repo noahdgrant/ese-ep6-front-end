@@ -8,12 +8,42 @@ function floor_select(floor) {
     btn_3.src = "./images/elevator_btns/elevator-btn-3.png"
     if (floor==1) {
         btn_1.src = "./images/elevator_btns/elevator-btn-1-grn.png"
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Typical action to be performed when the document is ready:
+                // document.getElementById("users").innerHTML = xhttp.responseText;
+            }
+        };
+        xhttp.open("POST", "./php/db_crud.php", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send("floor="+encodeURIComponent("1"));
     }
     else if (floor==2) {
         btn_2.src = "./images/elevator_btns/elevator-btn-2-grn.png"
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Typical action to be performed when the document is ready:
+                // document.getElementById("users").innerHTML = xhttp.responseText;
+            }
+        };
+        xhttp.open("POST", "./php/db_crud.php", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send("floor="+encodeURIComponent("2"));
     }
     else if(floor==3){
         btn_3.src = "./images/elevator_btns/elevator-btn-3-grn.png"
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Typical action to be performed when the document is ready:
+                // document.getElementById("users").innerHTML = xhttp.responseText;
+            }
+        };
+        xhttp.open("POST", "./php/db_crud.php", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send("floor="+encodeURIComponent("3"));
     }
 }
 
