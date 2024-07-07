@@ -10,7 +10,9 @@ var verify_password = document.getElementById("verify_password");
 
 form.addEventListener("submit", function(e) {validate_information(e);}, false);
 email.addEventListener("keyup", function(e) {validate_email(e);}, false);
+email.addEventListener("blur", function(e) {check_email_availability(e);}, false);
 username.addEventListener("keyup", function(e) {validate_username(e);}, false);
+username.addEventListener("blur", function(e) {check_username_availability(e);}, false);
 password.addEventListener("keyup", function(e) {validate_password(e);}, false);
 verify_password.addEventListener("keyup", function(e) {validate_verify_password(e);}, false);
 
@@ -23,26 +25,6 @@ function validate_email(e) {
     if (!email.value.endsWith("@conestogac.on.ca")) {
         error_msg += "Must provide a valid Conestoga College email.";
         error = true;
-    }
-
-    // if the username is valid check to make sure it is not already used in the database
-    if(!error){
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // Typical action to be performed when the document is ready:
-                // document.getElementById("users").innerHTML = xhttp.responseText;
-                let response = JSON.parse(xhttp.responseText);
-                if (response.error){
-                    error_msg += "Username already taken<br>";
-                    error = true;
-
-                }
-            }
-        };
-        xhttp.open("POST", "./php/db_crud.php", true);
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.send("username="+encodeURIComponent(email.value)+"&function=check_user");
     }
 
     // Print error
@@ -63,27 +45,6 @@ function validate_username(e) {
     if (username.value.length < MIN_LENGTH) {
         error_msg += "Username too short. Minimum length is " + MIN_LENGTH + "<br>";
         error = true;
-    }
-    // check database to see if username is already taken
-
-    // if the username is valid check to make sure it is not already used in the database
-    if(!error){
-        let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // Typical action to be performed when the document is ready:
-                // document.getElementById("users").innerHTML = xhttp.responseText;
-                let response = JSON.parse(xhttp.responseText);
-                if (response.error){
-                    error_msg += "Username already taken<br>";
-                    error = true;
-
-                }
-            }
-        };
-        xhttp.open("POST", "./php/db_crud.php", true);
-        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.send("username="+encodeURIComponent(username.value)+"&function=check_user");
     }
 
     // Print error
@@ -146,9 +107,65 @@ function validate_verify_password(e) {
     }
 }
 
-function validate_information(e) {
+async function validate_information(e) {
     validate_email(e);
     validate_username(e);
     validate_password(e);
     validate_verify_password(e);
+    await check_username_availability(e);
+    await check_email_availability(e);
+}
+
+function check_username_availability(e){
+    let error_msg = "";
+    if (document.getElementById("user_errror_msg").innerHTML == ""){
+        error_msg = "<b>Invalid Username</b><br>";
+    }
+    else{
+        error_msg = document.getElementById("user_errror_msg").innerHTML;
+    }
+
+    // if the username is valid check to make sure it is not already used in the database
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            // document.getElementById("users").innerHTML = xhttp.responseText;
+            let response = JSON.parse(xhttp.responseText);
+            if (!response.success){
+                document.getElementById("user_errror_msg").innerHTML = error_msg + "Username already taken<br>";
+                e.preventDefault();
+            }
+        }
+    };
+    xhttp.open("POST", "./php/db_crud.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.send("username="+encodeURIComponent(username.value)+"&function=check_user");
+}
+
+function check_email_availability(e){
+    let error_msg = "";
+    if (document.getElementById("email_errror_msg").innerHTML == ""){
+        error_msg = "<b>Invalid Email</b><br>";
+    }
+    else{
+        error_msg = document.getElementById("email_errror_msg").innerHTML;
+    }
+
+    // if the email is valid check to make sure it is not already used in the database
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            // document.getElementById("users").innerHTML = xhttp.responseText;
+            let response = JSON.parse(xhttp.responseText);
+            if (!response.success){
+                document.getElementById("email_errror_msg").innerHTML = error_msg + "Email is already in use<br>";
+                e.preventDefault();
+            }
+        }
+    };
+    xhttp.open("POST", "./php/db_crud.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.send("email="+encodeURIComponent(email.value)+"&function=check_user");
 }
