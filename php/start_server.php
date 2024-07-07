@@ -7,7 +7,7 @@ set_time_limit(0);
 
 // Check if server is already running
 if (file_exists($pidFile)) {
-    die(json_encode(array('success' => 'false', 'message' => 'Error: Server is already running.')));
+    die(json_encode(array("success" => false, "message" => "Error: Server is already running.")));
 }
 
 // Determine the correct command to start the server

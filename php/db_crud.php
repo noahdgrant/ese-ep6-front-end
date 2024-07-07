@@ -34,7 +34,7 @@ if(isset($_POST["function"])){
         $database = db_connect($db_elevator_one);
         $floor = $_POST["floor"];
         $result = $database->query("INSERT INTO RequestHistory (Method, Floor) VALUES ('Website', $floor)");
-        //die(json_encode(array("success" => "false", "message" => "Error: .")));
+        //die(json_encode(array("success" => false, "message" => "Error: .")));
     }
 
     // Create User
@@ -80,9 +80,9 @@ if(isset($_POST["function"])){
         $statement->execute();
         $count = $statement->fetchColumn();
         if ($count > 0) {
-            die(json_encode(array("success" => "false")));
+            die(json_encode(array("success" => false)));
         } else {
-            die(json_encode(array("success" => "true")));
+            die(json_encode(array("success" => true)));
         }
 
     }
@@ -99,9 +99,9 @@ if(isset($_POST["function"])){
         $currentFloor = $statement->fetch(PDO::FETCH_ASSOC);
 
         if($currentFloor){
-            die(json_encode(array("success" => "true", "message" => $currentFloor["Floor"])));
+            die(json_encode(array("success" => true, "message" => $currentFloor["Floor"])));
         }else{
-            die(json_encode(array("success" => "false")));
+            die(json_encode(array("success" => false)));
         }
 
     }
