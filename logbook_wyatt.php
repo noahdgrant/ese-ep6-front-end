@@ -103,9 +103,13 @@ session_start();
                 <h2 id="week9">Week 9</h2>
                 <ul>
                     <li>Set up PHP sessions</li>
-                    <li>Started working on login and sysql db for frontend</li>
+                    <li>Started working on login and mysql db for frontend</li>
                 </ul>
                 <h2 id="week10">Week 10</h2>
+                <ul>
+                    <li>Finished implementing CRUD functions</li>
+                    <li>Implemented eMail for password reseting</li>
+                </ul>
                 <h2 id="week11">Week 11</h2>
                 <h2 id="week12">Week 12</h2>
                 <h2 id="week13">Week 13</h2>
