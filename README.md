@@ -39,3 +39,27 @@ $db_username = getenv('MYSQL_USERNAME');
 
 #### File permissions
 Ensure json/cardread.json and php/tmp have read/write permissions
+
+
+
+## Email Setup for password change requests:
+1. Create a gmail account
+
+2. enable 2 step verification
+go to google account https://myaccount.google.com/
+Select "Security" from the left-hand menu.
+Under "Signing in to Google," find "2-Step Verification" and click on it.
+Follow the prompts to enable 2-Step Verification.
+
+3. generate an app password
+After enabling 2-Step Verification, go back to the "Security" section.
+In the search bar at the top search for "App passwords" and click on it.
+You may need to enter your password again.
+Enter a name for your app (e.g., "PHP Mailer").
+Click "Create".
+Google will provide a 16-character app password. Copy this password.
+
+4. include app password in envirnment variables
+
+5. download and include the following library:
+https://github.com/PHPMailer/PHPMailer/releases

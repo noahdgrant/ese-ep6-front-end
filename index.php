@@ -44,6 +44,7 @@ session_start();
                                     <input type="submit" value="Log in" id="submit">
                                     <br><br>
                                     <a href="./request_access.php" id="request_access_link">Can't login? Request Access</a>
+                                    <a href="./request_reset.php" id="request_reset_link">Forgot Password</a>
                                     <div>
                                         <p id="user_errror_msg"></p>
                                         <p id="pswd_errror_msg"></p>

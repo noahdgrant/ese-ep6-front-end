@@ -14,7 +14,7 @@ session_start();
             <?php include "./common/footer.php"; ?>
         </div>
         <script>
-        <!-- TODO -->
+            // TODO
         </script>
         <?php include "./common/bottom.php"; ?>
     </body>

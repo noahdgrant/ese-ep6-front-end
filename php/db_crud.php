@@ -1,28 +1,8 @@
 <?php
 session_start();
-// Databases
-$db_users = "users";
-$db_elevator_one = "ElevatorOne";
 
-// Connect to database
-function db_connect($db) {
-    $username = getenv("MYSQL_USERNAME");
-    $password = getenv("MYSQL_PASSWORD");
-    $host = "127.0.0.1";
-    $path = "mysql:host=".$host.";dbname=".$db;
-
-    $database = new PDO($path, $username, $password);
-    $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    return $database;
-}
-
-function shutdown() {
-    global $database;
-    if ($database) {
-        $database = null;
-    }
-}
-register_shutdown_function("shutdown");
+// Include db connect functions
+require "db_connect.php";
 
 if(isset($_POST["function"])){
     // CREATE
@@ -146,22 +126,18 @@ if(isset($_POST["function"])){
     // T: accounts
     elseif($_POST["function"] === "update_user"){
         $database = db_connect($db_users);
-        if(isset($_POST["username"])){
-            $query_field = "Username";
-            $query_value = $_POST["username"];
-        }
-        elseif(isset($_POST["email"])){
-            $query_field = "Email";
-            $query_value = $_POST["email"];
-        }
-        elseif(isset($_POST["conestoga_card_id"])){
-            $query_field = "ConestogaCardID";
-            $query_value = $_POST["conestoga_card_id"];
-        }
-        elseif(isset($_POST["password"])){
-            $query_field = "Password";
-            $query_value = $_POST["password"];
-        }
+
+        $new_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+        $statement = $database->prepare("UPDATE accounts SET password = ? WHERE email = ?");
+        $statement->execute([$new_password, $_POST["email"]]);
+
+        // Delete the token
+        $statement = $database->prepare('DELETE FROM password_resets WHERE token = ?');
+        $statement->execute([$_POST["token"]]);
+
+        die(json_encode(array("success" => true)));
+
     }
 
     // DELETE

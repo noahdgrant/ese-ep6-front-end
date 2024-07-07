@@ -1,4 +1,7 @@
-// this wont work if already logged in
+// Javascript for validating login information & Elevator Control GUI
+
+// Login Form Validation
+
 window.addEventListener("load", (event) => {
     // if not logged in:
     if(document.getElementById("username")){
@@ -8,15 +11,11 @@ window.addEventListener("load", (event) => {
 });
 
 const MIN_LENGTH = 5;
-
 var form = document.getElementById("login");
 var username = document.getElementById("username");
 var password = document.getElementById("password");
 
-document.getElementById("btn_1").addEventListener("click", function(e) {floor_select(1);}, false);
-document.getElementById("btn_2").addEventListener("click", function(e) {floor_select(2);}, false);
-document.getElementById("btn_3").addEventListener("click", function(e) {floor_select(3);}, false);
-
+// if not logged in:
 if(form){
     form.addEventListener("submit", function(e) {validate_information(e);}, false);
     username.addEventListener("keyup", function(e) {validate_username(e);}, false);
@@ -27,8 +26,6 @@ function validate_username(e) {
     let error = false;
     let error_msg = "<b>Invalid Username</b><br>";
     document.getElementById("user_errror_msg").innerHTML ="";
-    let contains_uppercase = false;
-    let contains_num = false;
 
     // Check length
     if (username.value.length < MIN_LENGTH) {
@@ -50,7 +47,6 @@ function validate_password(e) {
     let error = false;
     let error_msg = "<b>Invalid Password</b><br>";
     document.getElementById("pswd_errror_msg").innerHTML = "";
-    let contains_num = false;
 
     // Check length
     if (password.value.length < MIN_LENGTH) {
@@ -73,6 +69,12 @@ function validate_information(e) {
     validate_password(e);
 }
 
+// Elevator Control GUI
+
+document.getElementById("btn_1").addEventListener("click", function(e) {floor_select(1);}, false);
+document.getElementById("btn_2").addEventListener("click", function(e) {floor_select(2);}, false);
+document.getElementById("btn_3").addEventListener("click", function(e) {floor_select(3);}, false);
+
 function floor_select(floor) {
     document.getElementById("audioElement").play();
     let btn_1 = document.getElementById("btn_1");
@@ -81,9 +83,6 @@ function floor_select(floor) {
     btn_1.src = "./images/elevator_btns/elevator-btn-1.png"
     btn_2.src = "./images/elevator_btns/elevator-btn-2.png"
     btn_3.src = "./images/elevator_btns/elevator-btn-3.png"
-
-
-
 
     if (floor==1) {
         btn_1.src = "./images/elevator_btns/elevator-btn-1-grn.png"
