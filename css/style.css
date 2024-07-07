@@ -63,7 +63,7 @@ nav a{
     margin-top: 70px; /* Add a top margin to avoid content overlay */
 }
 
-#request_access_link{
+#request_access_link, #request_reset_link{
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
@@ -81,13 +81,13 @@ nav a{
   transition: background-color 0.2s ease-out, border-color 0.2s ease-out;
 }
 
-#request_access_link:hover{
+#request_access_link:hover, #request_reset_link:hover{
   color: #fff;
   background-color: #286090;
   border-color: #204d74;
 }
 
-#request_access_link:active{
+#request_access_link:active, #request_reset_link:active{
   color: #fff;
   background-color: #204d74;
   border-color: #122b40;

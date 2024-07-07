@@ -12,32 +12,22 @@ $MAIL_USERNAME = getenv("MAIL_USERNAME");
 $MAIL_PASSWORD = getenv("MAIL_PASSWORD");
 $SERVER_ADDRESS = getenv("SERVER_ADDRESS");
 
-$db_users = "users";
-
-// Connect to database
-function db_connect($db) {
-    $username = getenv("MYSQL_USERNAME");
-    $password = getenv("MYSQL_PASSWORD");
-    $host = "127.0.0.1";
-    $path = "mysql:host=".$host.";dbname=".$db;
-
-    $database = new PDO($path, $username, $password);
-    $database->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    return $database;
-}
+// Include db connect functions & variables
+require "db_connect.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $recipient_email = $_POST["email"];
     
     // Check if the email exists in the database
-
     $database = db_connect($db_users);
+    
     try {
         $statement = $database->prepare("SELECT * FROM accounts WHERE email = ?");
         $statement->execute([$recipient_email]);
     } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        die(json_encode(array("success" => false, "message" => "Error: ". $e->getMessage())));
     }
+
     $user = $statement->fetch();
 
     if ($user) {
@@ -47,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Insert token into the database
         $database = db_connect($db_users);
-        $statement = $database->prepare('INSERT INTO password_resets (email, token, expires) VALUES (?, ?, ?)');
+        $statement = $database->prepare("INSERT INTO password_resets (email, token, expires) VALUES (?, ?, ?)");
         $statement->execute([$recipient_email, $token, $expires]);
 
         // Send email to user
@@ -58,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Mail configuration
         $mail = new PHPMailer(true);
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
         $mail->SMTPAuth = true;
         $mail->Host = $MAIL_HOST;
@@ -76,12 +66,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->AltBody = $message;
 
         if(!$mail->send()){
-            return "Email not send. Please try again";
+            die(json_encode(array("success" => false, "message" => "Error: Email did not send.")));
         }else{
-            return "success";
+            die(json_encode(array("success" => true, "message" => "Email Sent.")));
         }
     } else {
-        // do something idk
+        // Email is not in the database
+        die(json_encode(array("success" => false, "message" => "Error: Email is not in the database.")));
     }
 }
 
