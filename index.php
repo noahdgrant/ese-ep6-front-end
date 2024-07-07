@@ -19,16 +19,17 @@ session_start();
                     if(isset($_SESSION['username'])){
                         echo <<<EOT
                         <div class="col-xs-12">
-                            <input type="image" class="centered_image" id="btn_3" onclick="floor_select(3)" src="./images/elevator_btns/elevator-btn-3.png"><br>
-                            <input type="image" class="centered_image" id="btn_2" onclick="floor_select(2)" src="./images/elevator_btns/elevator-btn-2.png"><br>
-                            <input type="image" class="centered_image" id="btn_1" onclick="floor_select(1)" src="./images/elevator_btns/elevator-btn-1.png">
+                            <input type="image" class="centered_image" id="btn_3" src="./images/elevator_btns/elevator-btn-3.png"><br>
+                            <input type="image" class="centered_image" id="btn_2" src="./images/elevator_btns/elevator-btn-2.png"><br>
+                            <input type="image" class="centered_image" id="btn_1" src="./images/elevator_btns/elevator-btn-1.png">
+                            <p id="debug"></p>
                         </div>
                         EOT;
                     }
                     else{
                         echo <<<EOT
                         <div class="col-xs-12 col-md-6">
-                            <form action="./login.php" method="post" id="login">
+                            <form action="./php/db_crud.php" method="post" id="login">
                                 <fieldset>
                                     <legend>Login</legend>
                                     <div>
@@ -48,6 +49,7 @@ session_start();
                                         <p id="pswd_errror_msg"></p>
                                     </div>
                                 </fieldset>
+                                <input type="hidden" name="function" value="login">
                             </form>
                         </div>
                         EOT;

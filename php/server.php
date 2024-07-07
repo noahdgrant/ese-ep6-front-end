@@ -4,10 +4,9 @@
 * to C:\xampp\php\php.ini
 */
 
-$host  = '192.168.1.212';
-//$host = '192.168.2.187';
+$host = "192.168.1.201";
 $port = 12345;
-$pidFile = __DIR__ . '/tmp/php_server.pid'; // Use current directory for PID file
+$pidFile = __DIR__ . "/tmp/php_server.pid"; // Use current directory for PID file
 
 // Turn on implicit output flushing so we see what we're getting as it comes in.
 ob_implicit_flush(true);
@@ -19,7 +18,7 @@ file_put_contents($pidFile,  getmypid());
 // Allow the script to hang around waiting for connections.
 set_time_limit(0);
 
-$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP) or die(json_encode(array('success' => 'false', 'message' => 'Error: could not create socket.')));;
+$socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP) or die(json_encode(array("success" => "false", "message" => "Error: could not create socket.")));
 
 function shutdown() {
     global $socket;
@@ -27,11 +26,11 @@ function shutdown() {
         socket_close($socket);
     }
 }
-register_shutdown_function('shutdown');
+register_shutdown_function("shutdown");
 
-socket_bind($socket, $host, $port) or die(json_encode(array('success' => 'false', 'message' => 'Error: Couldnt bind socket.')));;
+socket_bind($socket, $host, $port) or die(json_encode(array("success" => "false", "message" => "Error: Couldnt bind socket.")));
 
-socket_listen($socket, 5) or die(json_encode(array('success' => 'false', 'message' => 'Error: Cannot listen to scoket.')));;
+socket_listen($socket, 5) or die(json_encode(array("success" => "false", "message" => "Error: Cannot listen to socket.")));
 
 do {
     $client_socket = socket_accept($socket);
@@ -48,7 +47,7 @@ do {
 
     $input = trim($input);
     $filePath = "../json/card_read.json";
-    $file = fopen($filePath, 'c+');
+    $file = fopen($filePath, "c+");
     if (flock($file, LOCK_EX)) { // Exclusive lock for writing
         ftruncate($file, 0); // Truncate the file
         fwrite($file, json_encode($input, JSON_PRETTY_PRINT));

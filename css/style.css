@@ -12,7 +12,7 @@ fieldset{
     border: 1px ridge black;
     border-radius: 10px;
     padding: 10px 0px 10px 20px;
-    width: 335px;
+    width: 400px;
 }
 
 input[type=text]{
@@ -32,7 +32,7 @@ nav a{
 }
 
 .form_input{
-    width: 160px;
+    width: 240px;
     height: 20px;
     text-align: left;
     padding: 0px, 0px, 0px, 10px;

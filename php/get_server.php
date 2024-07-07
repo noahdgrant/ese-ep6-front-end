@@ -1,7 +1,7 @@
 <?php
 $filePath = "../json/card_read.json";
 
-$file = fopen($filePath, 'c+');
+$file = fopen($filePath, "c+");
 if(filesize($filePath) == 0){
     die();
 }
