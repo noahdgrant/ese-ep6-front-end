@@ -42,13 +42,20 @@ if(isset($_POST["function"])){
     // T: accounts
     elseif($_POST["function"] === "create_user"){
         $database = db_connect("users");
-
+        $hashed_password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+        if($_POST["conestoga_id"]==""){
+            $conestoga_card_id = NULL;
+        }
+        else{
+            $conestoga_card_id = $_POST["conestoga_id"];
+        }
         $query = "INSERT INTO accounts (Username, Password, Email, ConestogaCardID) VALUES (:Username, :Password, :Email, :ConestogaCardID)";
         $statement = $database->prepare($query);
+        $statement->bindParam(":ConestogaCardID", $conestoga_card_id, PDO::PARAM_STR);
         $statement->bindParam(":Username", $_POST["username"], PDO::PARAM_STR);
-        $statement->bindParam(":Password", $_POST["password"], PDO::PARAM_STR);
+        $statement->bindParam(":Password", $hashed_password, PDO::PARAM_STR);
         $statement->bindParam(":Email", $_POST["email"], PDO::PARAM_STR);
-        $statement->bindParam(":ConestogaCardID", $_POST["conestoga_id"], PDO::PARAM_STR);
+        
         $result = $statement->execute();
 
         $_SESSION["username"] = $_POST["username"];
@@ -57,7 +64,7 @@ if(isset($_POST["function"])){
 
     // READ
 
-    // Check User Credential Availability
+    // Check New User Credential Availability
     // DB: users
     // T: accounts
     elseif($_POST["function"] === "check_user"){
@@ -110,23 +117,18 @@ if(isset($_POST["function"])){
     // DB: users
     // T: accounts
     elseif($_POST["function"] === "login"){
-        $login_user = array(
-            "username" => $_POST["username"],
-            "password" => $_POST["password"]
-        );
-
         $database = db_connect($db_users);
 
         $query = "SELECT password FROM accounts WHERE username = :username";
         $statement = $database->prepare($query);
-        $statement->bindParam(":username", $login_user["username"], PDO::PARAM_STR);
+        $statement->bindParam(":username", $_POST["username"], PDO::PARAM_STR);
         $result = $statement->execute();
 
-        $storedPassword = $statement->fetchColumn();
+        $storedPassword = $statement->fetch(PDO::FETCH_ASSOC);
 
-        if ($storedPassword === $login_user["password"]){
+        if ($result && password_verify($_POST["password"], $storedPassword['password'])){
             // start session
-            $_SESSION["username"] = $login_user["username"];
+            $_SESSION["username"] = $_POST["username"];
         }
         else{
             session_unset();
