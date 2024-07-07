@@ -29,7 +29,7 @@ session_start();
                     else{
                         echo <<<EOT
                         <div class="col-xs-12 col-md-6">
-                            <form action="./login.php" method="post" id="login">
+                            <form action="./php/db_crud.php" method="post" id="login">
                                 <fieldset>
                                     <legend>Login</legend>
                                     <div>
@@ -49,6 +49,7 @@ session_start();
                                         <p id="pswd_errror_msg"></p>
                                     </div>
                                 </fieldset>
+                                <input type="hidden" name="function" value="login">
                             </form>
                         </div>
                         EOT;

@@ -29,7 +29,7 @@
                 if(isset($_SESSION['username'])){
                     echo <<<EOT
                     <li class="nav-item">
-                        <a class="nav-link" href="./login.php?request=logout">Logout</a>
+                        <a class="nav-link" href="./php/db_crud.php?function=logout">Logout</a>
                     </li>
                     EOT;
                 }

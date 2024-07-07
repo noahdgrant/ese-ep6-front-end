@@ -9,28 +9,28 @@ session_start();
         <div id="page" class="container">
             <?php include "./common/header.php"; ?>
             <div id="content">
-                <form action="./access_requested.php" method="post" id="request_access">
+                <form action="./php/db_crud.php" method="post" id="request_access">
                     <fieldset>
                         <legend>Request Access</legend>
                         <div>
                             <label for="email" class="form_label">Email:</label>
-                            <input id="email" class="form_input" type="text" name="email">
+                            <input id="email" class="form_input" type="text" name="email" autocomplete="email">
                         </div>
                         <div>
                             <label for="username" class="form_label">Username:</label>
-                            <input id="username" class="form_input" type="text" name="username">
+                            <input id="username" class="form_input" type="text" name="username" autocomplete="username">
                         </div>
                         <div>
                             <label for="password" class="form_label">Password:</label>
-                            <input id="password" class="form_input" type="password" name="password">
+                            <input id="password" class="form_input" type="password" name="password" autocomplete="new-password">
                         </div>
                         <div>
                             <label for="verify_password" class="form_label">Verify Password:</label>
-                            <input id="verify_password" class="form_input" type="password" name="verify_password">
+                            <input id="verify_password" class="form_input" type="password" name="verify_password" autocomplete="new-password">
                         </div>
                         <div>
                             <label for="conestoga_id" class="form_label">Conestoga ID:</label>
-                            <input id="conestoga_id" class="form_input" type="text" name="conestoga_id">
+                            <input id="conestoga_id" class="form_input" type="text" name="conestoga_id" readonly>
                         </div>
                         <br>
                         <div>
@@ -42,6 +42,7 @@ session_start();
                         <br>
                         <input type="submit" value="Request Access" id="submit">
                     </fieldset>
+                    <input type="hidden" name="function" value="create_user">
                 </form>
             </div>
             <?php include "./common/footer.php"; ?>

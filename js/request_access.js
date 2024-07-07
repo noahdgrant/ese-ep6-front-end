@@ -16,12 +16,38 @@ verify_password.addEventListener("keyup", function(e) {validate_verify_password(
 
 
 function validate_email(e) {
+    let error = false;
+    let error_msg = "<b>Invalid Email</b><br>";
     document.getElementById("email_errror_msg").innerHTML ="";
 
-    // check to see if username is already used
-
     if (!email.value.endsWith("@conestogac.on.ca")) {
-        document.getElementById("email_errror_msg").innerHTML = "<b>Invalid Email</b><br>Must provide a valid Conestoga College email.";
+        error_msg += "Must provide a valid Conestoga College email.";
+        error = true;
+    }
+
+    // if the username is valid check to make sure it is not already used in the database
+    if(!error){
+        let xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // Typical action to be performed when the document is ready:
+                // document.getElementById("users").innerHTML = xhttp.responseText;
+                let response = JSON.parse(xhttp.responseText);
+                if (response.error){
+                    error_msg += "Username already taken<br>";
+                    error = true;
+
+                }
+            }
+        };
+        xhttp.open("POST", "./php/db_crud.php", true);
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhttp.send("username="+encodeURIComponent(email.value)+"&function=check_user");
+    }
+
+    // Print error
+    if (error) {
+        document.getElementById("email_errror_msg").innerHTML = error_msg;
         if(e.submitter?.id == "submit"){
             e.preventDefault();
         }
@@ -47,11 +73,17 @@ function validate_username(e) {
             if (this.readyState == 4 && this.status == 200) {
                 // Typical action to be performed when the document is ready:
                 // document.getElementById("users").innerHTML = xhttp.responseText;
+                let response = JSON.parse(xhttp.responseText);
+                if (response.error){
+                    error_msg += "Username already taken<br>";
+                    error = true;
+
+                }
             }
         };
         xhttp.open("POST", "./php/db_crud.php", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhttp.send("username="+encodeURIComponent(username.value));
+        xhttp.send("username="+encodeURIComponent(username.value)+"&function=check_user");
     }
 
     // Print error
