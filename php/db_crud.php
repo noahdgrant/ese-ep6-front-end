@@ -74,23 +74,20 @@ if(isset($_POST["function"])){
 
     }
 
-    // Check Current Floor
+    // Check Floor and elevator History
     // DB: ElevatorOne
     // T: FloorHistory
-    elseif($_POST["function"] === "check_floor"){
+    elseif($_POST["function"] === "check_history"){
         $database = db_connect($db_elevator_one);
-
-        $statement = $database->prepare("SELECT * FROM FloorHistory WHERE Id = (SELECT MAX(Id) FROM FloorHistory)");
-        $statement->execute();
-
-        $currentFloor = $statement->fetch(PDO::FETCH_ASSOC);
-
-        if($currentFloor){
-            die(json_encode(array("success" => true, "message" => $currentFloor["Floor"])));
-        }else{
+        $statement = $database->prepare("SELECT Floor, Id FROM FloorHistory WHERE Id > ?");
+        $statement->execute([$_POST["floor_pointer"]]);
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        if($result){
+            die(json_encode(array("success" => true, "data" => $result)));
+        }
+        else{
             die(json_encode(array("success" => false)));
         }
-
     }
 
     // Login
