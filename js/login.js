@@ -125,17 +125,17 @@ function update_pointers(){
                 if(response.data.length > 0){
                     // New data in floor history
                     floor_history_pointer = Math.max(...response.data.map(item => item.Id));
-                    if(response.data.some(item => item.Floor === 1)){
+                    if(response.data.some(item => item.Floor === "1")){
                         btn_1.src = "./images/elevator_btns/elevator-btn-1.png"
                     }
-                    if(response.data.some(item => item.Floor === 2)){
+                    if(response.data.some(item => item.Floor === "2")){
                         btn_2.src = "./images/elevator_btns/elevator-btn-2.png"
                     }
-                    if(response.data.some(item => item.Floor === 3)){
+                    if(response.data.some(item => item.Floor === "3")){
                         btn_3.src = "./images/elevator_btns/elevator-btn-3.png"
                     }
 
-                    elev.src = "./images/elevator_"+response.data.find(item => item.Id === floor_history_pointer).Floor+".png"
+                    elev.src = "./images/elevator_"+response.data.find(item => item.Id == floor_history_pointer).Floor+".png"
                 }
             }
             else{
