@@ -169,3 +169,19 @@ function check_email_availability(e){
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.send("email="+encodeURIComponent(email.value)+"&function=check_user");
 }
+
+function get_server() {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            if (xhttp.responseText != ""){
+                document.getElementById("conestoga_id").value = xhttp.responseText.replace(/['" ]+/g, '');
+            }
+        }
+    };
+    xhttp.open("GET", "./php/get_server.php", true);
+    xhttp.send();
+}
+
+setInterval(get_server, 5000);

@@ -22,6 +22,7 @@ const MIN_LENGTH = 5;
 var form = document.getElementById("login");
 var username = document.getElementById("username");
 var password = document.getElementById("password");
+var conestoga_id = document.getElementById("conestoga_id")
 var btn_1 = document.getElementById("btn_1");
 var btn_2 = document.getElementById("btn_2");
 var btn_3 = document.getElementById("btn_3");
@@ -33,6 +34,22 @@ if(form){
     form.addEventListener("submit", function(e) {validate_information(e);}, false);
     username.addEventListener("keyup", function(e) {validate_username(e);}, false);
     password.addEventListener("keyup", function(e) {validate_password(e);}, false);
+    setInterval(get_server, 5000);
+}
+
+function get_server() {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            if (xhttp.responseText != ""){
+                conestoga_id.value = xhttp.responseText;
+                form.submit();
+            }
+        }
+    };
+    xhttp.open("GET", "./php/get_server.php", true);
+    xhttp.send();
 }
 
 function validate_username(e) {
@@ -78,8 +95,10 @@ function validate_password(e) {
 }
 
 function validate_information(e) {
-    validate_username(e);
-    validate_password(e);
+    if(conestoga_id.value === ""){
+        validate_username(e);
+        validate_password(e);
+    }
 }
 
 // Elevator Control GUI
