@@ -7,13 +7,26 @@ window.addEventListener("load", (event) => {
     if(document.getElementById("username")){
         document.getElementById("username").focus();
     }
-    
+    else{
+        // initialize elevatorHistory && floorHistory pointers
+        setInterval(update_pointers, 1000);
+    }
 });
 
+// Elevator GUI Variables
+var current_floor;
+var floor_history_pointer;
+
+// Login Form Variables 
 const MIN_LENGTH = 5;
 var form = document.getElementById("login");
 var username = document.getElementById("username");
 var password = document.getElementById("password");
+var btn_1 = document.getElementById("btn_1");
+var btn_2 = document.getElementById("btn_2");
+var btn_3 = document.getElementById("btn_3");
+var elev = document.getElementById("elevator_image");
+
 
 // if not logged in:
 if(form){
@@ -77,12 +90,9 @@ document.getElementById("btn_3").addEventListener("click", function(e) {floor_se
 
 function floor_select(floor) {
     document.getElementById("audioElement").play();
-    let btn_1 = document.getElementById("btn_1");
-    let btn_2 = document.getElementById("btn_2");
-    let btn_3 = document.getElementById("btn_3");
-    btn_1.src = "./images/elevator_btns/elevator-btn-1.png"
-    btn_2.src = "./images/elevator_btns/elevator-btn-2.png"
-    btn_3.src = "./images/elevator_btns/elevator-btn-3.png"
+    // btn_1.src = "./images/elevator_btns/elevator-btn-1.png"
+    // btn_2.src = "./images/elevator_btns/elevator-btn-2.png"
+    // btn_3.src = "./images/elevator_btns/elevator-btn-3.png"
 
     if (floor==1) {
         btn_1.src = "./images/elevator_btns/elevator-btn-1-grn.png"
@@ -103,4 +113,37 @@ function floor_select(floor) {
     xhttp.open("POST", "./php/db_crud.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.send("floor="+encodeURIComponent(floor)+"&function=select_floor");
+}
+
+function update_pointers(){
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            // Typical action to be performed when the document is ready:
+            let response = JSON.parse(xhttp.responseText);
+            if (response.success){
+                if(response.data.length > 0){
+                    // New data in floor history
+                    floor_history_pointer = Math.max(...response.data.map(item => item.Id));
+                    if(response.data.some(item => item.Floor === "1")){
+                        btn_1.src = "./images/elevator_btns/elevator-btn-1.png"
+                    }
+                    if(response.data.some(item => item.Floor === "2")){
+                        btn_2.src = "./images/elevator_btns/elevator-btn-2.png"
+                    }
+                    if(response.data.some(item => item.Floor === "3")){
+                        btn_3.src = "./images/elevator_btns/elevator-btn-3.png"
+                    }
+
+                    elev.src = "./images/elevator_"+response.data.find(item => item.Id == floor_history_pointer).Floor+".png"
+                }
+            }
+            else{
+                console.log("Error Getting DB Pointers");
+            }
+        }
+    };
+    xhttp.open("POST", "./php/db_crud.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.send("function=check_history&floor_pointer="+encodeURIComponent(floor_history_pointer));
 }

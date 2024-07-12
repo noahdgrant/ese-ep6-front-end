@@ -18,17 +18,20 @@ session_start();
                     <?php
                     if(isset($_SESSION['username'])){
                         echo <<<EOT
-                        <div class="col-xs-12">
+                        <div class="col-xs-12 col-md-6">
                             <input type="image" class="centered_image" id="btn_3" src="./images/elevator_btns/elevator-btn-3.png"><br>
                             <input type="image" class="centered_image" id="btn_2" src="./images/elevator_btns/elevator-btn-2.png"><br>
                             <input type="image" class="centered_image" id="btn_1" src="./images/elevator_btns/elevator-btn-1.png">
                             <p id="debug"></p>
                         </div>
+                        <div class="col-xs-12 col-md-6">
+                            <img src="./images/elevator_1.png" id="elevator_image"></img>
+                        </div>
                         EOT;
                     }
                     else{
                         echo <<<EOT
-                        <div class="col-xs-12 col-md-6">
+                        <div class="col-xs-12">
                             <form action="./php/db_crud.php" method="post" id="login">
                                 <fieldset>
                                     <legend>Login</legend>
