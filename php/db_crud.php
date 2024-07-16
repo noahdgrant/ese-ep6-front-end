@@ -90,6 +90,27 @@ if(isset($_POST["function"])){
         }
     }
 
+    // Get Elevator Stats
+    // DB: ElevatorOne
+    // T: FloorHistory & RequestHistory
+    elseif($_POST["function"] === "read_stats"){
+        $database = db_connect($db_elevator_one);
+        $statement = $database->prepare("SELECT * FROM FloorHistory");
+        $statement->execute();
+        $floor_result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $statement = $database->prepare("SELECT * FROM RequestHistory");
+        $statement->execute();
+        $request_result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if($floor_result && $request_result){
+            die(json_encode(array("success" => true, "floor_history" => $floor_result, "request_history" => $request_result)));
+        }
+        else{
+            die(json_encode(array("success" => false)));
+        }
+    }
+
     // Login
     // DB: users
     // T: accounts
