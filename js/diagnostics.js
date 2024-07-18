@@ -134,7 +134,7 @@ function initializeFhDayChart() {
     new Chart(ctx, {
         type: "bar",
         data: {
-            labels: ["SUN","MON","TUE","WED","THU","FRI","SAT"],
+            labels: ["MON","TUE","WED","THU","FRI","SAT","SUN"],
             datasets: [{
                 label: "Floor 1",
                 backgroundColor: barColors[0],
@@ -244,7 +244,7 @@ function initializeRhDayChart() {
     new Chart(ctx, {
         type: "bar",
         data: {
-            labels: ["SUN","MON","TUE","WED","THU","FRI","SAT"],
+            labels: ["MON","TUE","WED","THU","FRI","SAT","SUN"],
             datasets: [{
                 label: "Website",
                 backgroundColor: barColors[0],
