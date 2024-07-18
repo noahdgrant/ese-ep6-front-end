@@ -11,8 +11,9 @@ const fh_counts = {
     "day":{
         1: Array(7).fill(0),
         2: Array(7).fill(0),
-        3: Array(7).fill(0),
-    }
+        3: Array(7).fill(0)
+    },
+    "total": Array(3).fill(0)
 }
 
 
@@ -32,12 +33,18 @@ const rh_counts = {
         "FloorTwoController": Array(7).fill(0),
         "FloorThreeController": Array(7).fill(0),
         "CarController": Array(7).fill(0)
+    },
+    "total":{
+        "Website": 0,
+        "Voice": 0,
+        "FloorOneController": 0,
+        "FloorTwoController": 0,
+        "FloorThreeController": 0,
+        "CarController": 0
     }
 }
 
 let barColors = ["#003f5c", "#444e86", "#955196", "#dd5182", "#ff6e54", "#ffa600"];
-
-
 
 function readStats(){
     let xhttp = new XMLHttpRequest();
@@ -69,6 +76,7 @@ function processData(data){
         let floor = data.floor_history[id]["Floor"];
         fh_counts.hour[floor][parseInt(hour)]++;
         fh_counts.day[floor][parseInt(day)]++;
+        fh_counts.total[floor-1]++;
     }
 
     for ( id in data.request_history) {
@@ -77,6 +85,7 @@ function processData(data){
         let method = data.request_history[id]["Method"];
         rh_counts.hour[method][parseInt(hour)]++;
         rh_counts.day[method][parseInt(day)]++;
+        rh_counts.total[method]++;
     }
 }
 
@@ -205,7 +214,7 @@ function initializeRhTimeChart() {
                 backgroundColor: barColors[4],
                 data: rh_counts.hour["FloorThreeController"],
             }, {
-                label: "Floor Controller",
+                label: "Car Controller",
                 backgroundColor: barColors[5],
                 data: rh_counts.hour["CarController"],
             }],
@@ -266,7 +275,7 @@ function initializeRhDayChart() {
                 backgroundColor: barColors[4],
                 data: rh_counts.day["FloorThreeController"],
             }, {
-                label: "Floor Controller",
+                label: "Car Controller",
                 backgroundColor: barColors[5],
                 data: rh_counts.day["CarController"],
             }],
@@ -300,11 +309,16 @@ function initializeRhDayChart() {
     });
 }
 
-function initializePieChart() {
-    var ctx = document.getElementById("pie_canv").getContext("2d");
+function initializeRhPieChart() {
+    var ctx = document.getElementById("rh_pie_canv").getContext("2d");
 
-    var xValues = ["Website", "France", "Spain", "USA", "Argentina"];
-    var yValues = [55, 49, 44, 24, 15];
+    var xValues = ["Website", "Voice", "Floor 1", "Floor 2", "Floor 3", "Car Controller"];
+    var yValues = [ rh_counts.total["Website"],
+                    rh_counts.total["Voice"],
+                    rh_counts.total["FloorOneController"],
+                    rh_counts.total["FloorTwoController"],
+                    rh_counts.total["FloorThreeController"],
+                    rh_counts.total["CarController"]];
 
     new Chart(ctx, {
         type: "pie",
@@ -318,12 +332,35 @@ function initializePieChart() {
         options: {
             title: {
                 display: true,
-                text: "World Wide Wine Production 2018"
+                text: "Request History"
             }
         }
     });
 }
 
+function initializeFhPieChart() {
+    var ctx = document.getElementById("fh_pie_canv").getContext("2d");
+
+    var xValues = ["Floor 1", "Floor 2", "Floor 3"];
+    var yValues = fh_counts.total;
+
+    new Chart(ctx, {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Floor History"
+            }
+        }
+    });
+}
 
 $("a[data-toggle='tab']").on("shown.bs.tab", function (e) {
     var target = $(e.target).attr("href"); // Get the target tab
@@ -353,10 +390,16 @@ $("a[data-toggle='tab']").on("shown.bs.tab", function (e) {
                 $("#rh_day_canv").data("initialized", true);
             }
             break;
-        case "#pie":
-            if (!$("#pie_canv").data("initialized")) {
-                initializePieChart();
-                $("#pie_canv").data("initialized", true);
+        case "#rh_pie":
+            if (!$("#rh_pie_canv").data("initialized")) {
+                initializeRhPieChart();
+                $("#rh_pie_canv").data("initialized", true);
+            }
+            break;
+        case "#fh_pie":
+            if (!$("#fh_pie_canv").data("initialized")) {
+                initializeFhPieChart();
+                $("#fh_pie_canv").data("initialized", true);
             }
             break;
     }

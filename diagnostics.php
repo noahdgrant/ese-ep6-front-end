@@ -28,7 +28,8 @@ session_start();
                         <li><a data-toggle="tab" href="#fh_day">Floor History (Day)</a></li>
                         <li><a data-toggle="tab" href="#rh_time">Requests History (Time)</a></li>
                         <li><a data-toggle="tab" href="#rh_day">Requests History (Day)</a></li>
-                        <li><a data-toggle="tab" href="#pie">Pie Chart</a></li>
+                        <li><a data-toggle="tab" href="#fh_pie">FH Pie Chart</a></li>
+                        <li><a data-toggle="tab" href="#rh_pie">RH Pie Chart</a></li>
                     </ul>
 
                     <div class="tab-content">
@@ -44,8 +45,11 @@ session_start();
                         <div id="rh_day" class="tab-pane fade">
                             <canvas id="rh_day_canv" style="width:100%;max-width:700px"></canvas>
                         </div>
-                        <div id="pie" class="tab-pane fade">
-                            <canvas id="pie_canv" style="width:100%;max-width:700px"></canvas>
+                        <div id="rh_pie" class="tab-pane fade">
+                            <canvas id="rh_pie_canv" style="width:100%;max-width:700px"></canvas>
+                        </div>
+                        <div id="fh_pie" class="tab-pane fade">
+                            <canvas id="fh_pie_canv" style="width:100%;max-width:700px"></canvas>
                         </div>
                     </div>
                     EOT;
