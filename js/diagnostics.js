@@ -19,13 +19,24 @@ const fh_counts = {
 const rh_counts = {
     "hour":{
        "Website": Array(24).fill(0),
-       "Voice": Array(24).fill(0)
+       "Voice": Array(24).fill(0),
+       "FloorOneController": Array(24).fill(0),
+       "FloorTwoController": Array(24).fill(0),
+       "FloorThreeController": Array(24).fill(0),
+       "CarController": Array(24).fill(0)
     },
     "day":{
         "Website": Array(7).fill(0),
-        "Voice": Array(24).fill(0)
+        "Voice": Array(7).fill(0),
+        "FloorOneController": Array(7).fill(0),
+        "FloorTwoController": Array(7).fill(0),
+        "FloorThreeController": Array(7).fill(0),
+        "CarController": Array(7).fill(0)
     }
 }
+
+let barColors = ["#003f5c", "#444e86", "#955196", "#dd5182", "#ff6e54", "#ffa600"];
+
 
 
 function readStats(){
@@ -77,15 +88,15 @@ function initializeFhTimeChart() {
             labels: ["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"],
             datasets: [{
                 label: "Floor 1",
-                backgroundColor: "#caf270",
+                backgroundColor: barColors[0],
                 data: fh_counts.hour[1],
             }, {
                 label: "Floor 2",
-                backgroundColor: "#45c490",
+                backgroundColor: barColors[1],
                 data: fh_counts.hour[2],
             }, {
                 label: "Floor 3",
-                backgroundColor: "#008d93",
+                backgroundColor: barColors[2],
                 data: fh_counts.hour[3],
             }],
         },
@@ -126,15 +137,15 @@ function initializeFhDayChart() {
             labels: ["SUN","MON","TUE","WED","THU","FRI","SAT"],
             datasets: [{
                 label: "Floor 1",
-                backgroundColor: "#caf270",
+                backgroundColor: barColors[0],
                 data: fh_counts.day[1],
             }, {
                 label: "Floor 2",
-                backgroundColor: "#45c490",
+                backgroundColor: barColors[1],
                 data: fh_counts.day[2],
             }, {
                 label: "Floor 3",
-                backgroundColor: "#008d93",
+                backgroundColor: barColors[2],
                 data: fh_counts.day[3],
             }],
         },
@@ -175,21 +186,29 @@ function initializeRhTimeChart() {
             labels: ["00","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20","21","22","23"],
             datasets: [{
                 label: "Website",
-                backgroundColor: "#caf270",
+                backgroundColor: barColors[0],
                 data: rh_counts.hour["Website"],
             }, {
                 label: "Voice",
-                backgroundColor: "#45c490",
+                backgroundColor:  barColors[1],
                 data: rh_counts.hour["Voice"],
-            }/*, {
+            }, {
                 label: "Floor 1",
-                backgroundColor: "#008d93",
-                data: rh_counts.hour[""],
+                backgroundColor: barColors[2],
+                data: rh_counts.hour["FloorOneController"],
             }, {
                 label: "Floor 2",
-                backgroundColor: "#2e5468",
-                data: rh_counts.hour[""],
-            }*/],
+                backgroundColor: barColors[3],
+                data: rh_counts.hour["FloorTwoController"],
+            }, {
+                label: "Floor 3",
+                backgroundColor: barColors[4],
+                data: rh_counts.hour["FloorThreeController"],
+            }, {
+                label: "Floor Controller",
+                backgroundColor: barColors[5],
+                data: rh_counts.hour["CarController"],
+            }],
         },
         options: {
             tooltips: {
@@ -228,21 +247,29 @@ function initializeRhDayChart() {
             labels: ["SUN","MON","TUE","WED","THU","FRI","SAT"],
             datasets: [{
                 label: "Website",
-                backgroundColor: "#caf270",
+                backgroundColor: barColors[0],
                 data: rh_counts.day["Website"],
             }, {
                 label: "Voice",
-                backgroundColor: "#45c490",
+                backgroundColor: barColors[1],
                 data: rh_counts.day["Voice"],
-            }/*, {
+            }, {
                 label: "Floor 1",
-                backgroundColor: "#008d93",
-                data: rh_counts.day[""],
+                backgroundColor: barColors[2],
+                data: rh_counts.day["FloorOneController"],
             }, {
                 label: "Floor 2",
-                backgroundColor: "#2e5468",
-                data: rh_counts.day[""],
-            }*/],
+                backgroundColor: barColors[3],
+                data: rh_counts.day["FloorTwoController"],
+            }, {
+                label: "Floor 3",
+                backgroundColor: barColors[4],
+                data: rh_counts.day["FloorThreeController"],
+            }, {
+                label: "Floor Controller",
+                backgroundColor: barColors[5],
+                data: rh_counts.day["CarController"],
+            }],
         },
         options: {
             tooltips: {
@@ -278,13 +305,6 @@ function initializePieChart() {
 
     var xValues = ["Website", "France", "Spain", "USA", "Argentina"];
     var yValues = [55, 49, 44, 24, 15];
-    var barColors = [
-        "#b91d47",
-        "#00aba9",
-        "#2b5797",
-        "#e8c3b9",
-        "#1e7145"
-    ];
 
     new Chart(ctx, {
         type: "pie",

@@ -62,7 +62,7 @@ session_start();
             </div>
             <?php include "./common/footer.php"; ?>
         </div>
-        <script src="./js/diagnostics.js?ver=0"></script>
+        <script src="./js/diagnostics.js"></script>
         <?php include "./common/bottom.php"; ?>
     </body>
 </html>
