@@ -32,7 +32,7 @@ session_start();
                     else{
                         echo <<<EOT
                         <div class="col-xs-12">
-                            <form action="./php/db_crud.php" method="post" id="login">
+                            <form action="./php/db_crud.php" method="post" id="login" name="login">
                                 <fieldset>
                                     <legend>Login</legend>
                                     <div>
