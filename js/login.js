@@ -36,6 +36,11 @@ if(form){
     password.addEventListener("keyup", function(e) {validate_password(e);}, false);
     setInterval(get_server, 5000);
 }
+else{
+    document.getElementById("btn_1").addEventListener("click", function(e) {floor_select(1);}, false);
+    document.getElementById("btn_2").addEventListener("click", function(e) {floor_select(2);}, false);
+    document.getElementById("btn_3").addEventListener("click", function(e) {floor_select(3);}, false);
+}
 
 function get_server() {
     let xhttp = new XMLHttpRequest();
@@ -43,7 +48,7 @@ function get_server() {
         if (this.readyState == 4 && this.status == 200) {
             // Typical action to be performed when the document is ready:
             if (xhttp.responseText != ""){
-                login_with_id(xhttp.responseText)
+                login_with_id(xhttp.response.replace(/\s/g, ''))
             }
         }
     };
@@ -114,12 +119,6 @@ function validate_information(e) {
         validate_password(e);
     }
 }
-
-// Elevator Control GUI
-
-document.getElementById("btn_1").addEventListener("click", function(e) {floor_select(1);}, false);
-document.getElementById("btn_2").addEventListener("click", function(e) {floor_select(2);}, false);
-document.getElementById("btn_3").addEventListener("click", function(e) {floor_select(3);}, false);
 
 function floor_select(floor) {
     document.getElementById("audioElement").play();
