@@ -114,13 +114,13 @@ if(isset($_POST["function"])){
             }
         }
         else{
-            $statement = $database->prepare("SELECT Username FROM accounts WHERE ID = ?");
+            $statement = $database->prepare("SELECT Username FROM accounts WHERE ConestogaCardID = ?");
             $result = $statement->execute([$_POST["conestoga_id"]]);
             $storedUsername = $statement->fetch(PDO::FETCH_ASSOC);
-            if ($result){
+            if ($storedUsername){
                 // start session
-                $_SESSION["username"] = $storedUsername;
-                die(json_encode(array("success" => true, "username" => $storedUsername)));
+                $_SESSION["username"] = $storedUsername["Username"];
+                die(json_encode(array("success" => true)));
             }
             else{
                 session_unset();
