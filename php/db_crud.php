@@ -120,7 +120,7 @@ if(isset($_POST["function"])){
             if ($result){
                 // start session
                 $_SESSION["username"] = $storedUsername;
-                die(json_encode(array("success" => true)));
+                die(json_encode(array("success" => true, "username" => $storedUsername)));
             }
             else{
                 session_unset();

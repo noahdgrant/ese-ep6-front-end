@@ -63,7 +63,7 @@ function login_with_id(id) {
         if (this.readyState == 4 && this.status == 200) {
             let response = JSON.parse(xhttp.responseText);
             if (response.success){
-
+                location.href = "index.php";
             }
         }
     };
