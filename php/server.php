@@ -38,30 +38,30 @@ do {
         //echo "socket_accept() failed: reason: " . socket_strerror(socket_last_error($socket)) . "\n";
         break;
     }
+    do{
+        $input = socket_read($client_socket, 1024);
+            if ($input === false) {
+                //echo "socket_read() failed: reason: " . socket_strerror(socket_last_error($client_socket)) . "\n";
+                break;
+            }
 
-    $input = socket_read($client_socket, 1024);
-    if ($input === false) {
-        //echo "socket_read() failed: reason: " . socket_strerror(socket_last_error($client_socket)) . "\n";
-        break;
-    }
-
-    $input = trim($input);
-    $filePath = "../json/card_read.json";
-    $file = fopen($filePath, "c+");
-    if (flock($file, LOCK_EX)) { // Exclusive lock for writing
-        ftruncate($file, 0); // Truncate the file
-        fwrite($file, json_encode($input, JSON_PRETTY_PRINT));
-        fflush($file); // Ensure all data is written to disk
-        flock($file, LOCK_UN); // Release the lock
-    } else {
-        throw new Exception("Could not lock file for writing");
-    }
-    fclose($file);
+            $input = trim($input);
+            $filePath = "../json/card_read.json";
+            $file = fopen($filePath, "c+");
+            if (flock($file, LOCK_EX)) { // Exclusive lock for writing
+                ftruncate($file, 0); // Truncate the file
+                fwrite($file, json_encode($input, JSON_PRETTY_PRINT));
+                fflush($file); // Ensure all data is written to disk
+                flock($file, LOCK_UN); // Release the lock
+            } else {
+                throw new Exception("Could not lock file for writing");
+            }
+            fclose($file);
 
 
-    $response = "Hello, client. You said: $input\n";
-    socket_write($client_socket, $response, strlen($response));
-
+            $response = "Hello, client. You said: $input\n";
+            socket_write($client_socket, $response, strlen($response));
+    } while ($client_socket);
     socket_close($client_socket);
 } while (true);
 
