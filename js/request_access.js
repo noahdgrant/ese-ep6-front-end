@@ -156,8 +156,6 @@ function check_email_availability(e){
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            // Typical action to be performed when the document is ready:
-            // document.getElementById("users").innerHTML = xhttp.responseText;
             let response = JSON.parse(xhttp.responseText);
             if (!response.success){
                 document.getElementById("email_errror_msg").innerHTML = error_msg + "Email is already in use<br>";
@@ -174,9 +172,9 @@ function get_server() {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            // Typical action to be performed when the document is ready:
-            if (xhttp.responseText != ""){
-                document.getElementById("conestoga_id").value = xhttp.responseText.replace(/['" ]+/g, '');
+            let response = JSON.parse(xhttp.responseText);
+            if (response.success){
+                document.getElementById("conestoga_id").value = response.content.replace(/['" ]+/g, '');
             }
         }
     };

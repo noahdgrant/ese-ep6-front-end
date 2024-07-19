@@ -47,8 +47,9 @@ function get_server() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             // Typical action to be performed when the document is ready:
-            if (xhttp.responseText != ""){
-                login_with_id(xhttp.responsexhttp.replace(/[' "]+/g, ''))
+            let response = JSON.parse(xhttp.responseText);
+            if (response.success){
+                login_with_id(response.content.replace(/['" ]+/g, ''))
             }
         }
     };

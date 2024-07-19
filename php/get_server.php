@@ -3,7 +3,7 @@ $filePath = "../json/card_read.json";
 
 $file = fopen($filePath, "c+");
 if(filesize($filePath) == 0){
-    die();
+    die(json_encode(array("success" => false, "message" => "File is Empty.")));
 }
 if (flock($file, LOCK_EX)) { // Exclusive lock for writing
     $contents = fread($file, filesize($filePath));
@@ -14,6 +14,6 @@ if (flock($file, LOCK_EX)) { // Exclusive lock for writing
     throw new Exception("Could not lock file for writing");
 }
 fclose($file);
-echo $contents;
 
+die(json_encode(array("success" => true, "content" => $contents)));
 ?>
