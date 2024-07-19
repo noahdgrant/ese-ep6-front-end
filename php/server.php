@@ -38,7 +38,6 @@ do {
         //echo "socket_accept() failed: reason: " . socket_strerror(socket_last_error($socket)) . "\n";
         break;
     }
-
     $input = socket_read($client_socket, 1024);
     if ($input === false) {
         //echo "socket_read() failed: reason: " . socket_strerror(socket_last_error($client_socket)) . "\n";
@@ -61,7 +60,6 @@ do {
 
     $response = "Hello, client. You said: $input\n";
     socket_write($client_socket, $response, strlen($response));
-
     socket_close($client_socket);
 } while (true);
 

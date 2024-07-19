@@ -66,9 +66,9 @@ session_start();
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    // Typical action to be performed when the document is ready:
-                    if (xhttp.responseText != ""){
-                        document.getElementById("user_ID").value = xhttp.responseText.replace(/['"]+/g, '');
+                    let response = JSON.parse(xhttp.responseText);
+                    if (response.success){
+                        document.getElementById("user_ID").value = response.content.replace(/['" ]+/g, '');
                     }
                 }
             };

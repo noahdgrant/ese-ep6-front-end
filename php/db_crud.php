@@ -117,21 +117,39 @@ if(isset($_POST["function"])){
     elseif($_POST["function"] === "login"){
         $database = db_connect($db_users);
 
-        $query = "SELECT password FROM accounts WHERE username = :username";
-        $statement = $database->prepare($query);
-        $statement->bindParam(":username", $_POST["username"], PDO::PARAM_STR);
-        $result = $statement->execute();
+        if($_POST["conestoga_id"]==""){
+            $query = "SELECT password FROM accounts WHERE Username = :username";
+            $statement = $database->prepare($query);
+            $statement->bindParam(":username", $_POST["username"], PDO::PARAM_STR);
+            $result = $statement->execute();
 
-        $storedPassword = $statement->fetch(PDO::FETCH_ASSOC);
+            $storedPassword = $statement->fetch(PDO::FETCH_ASSOC);
 
-        if ($result && password_verify($_POST["password"], $storedPassword['password'])){
-            // start session
-            $_SESSION["username"] = $_POST["username"];
+            if ($result && password_verify($_POST["password"], $storedPassword['password'])){
+                // start session
+                $_SESSION["username"] = $_POST["username"];
+            }
+            else{
+                session_unset();
+                session_destroy();
+            }
         }
         else{
-            session_unset();
-            session_destroy();
+            $statement = $database->prepare("SELECT Username FROM accounts WHERE ConestogaCardID = ?");
+            $result = $statement->execute([$_POST["conestoga_id"]]);
+            $storedUsername = $statement->fetch(PDO::FETCH_ASSOC);
+            if ($storedUsername){
+                // start session
+                $_SESSION["username"] = $storedUsername["Username"];
+                die(json_encode(array("success" => true)));
+            }
+            else{
+                session_unset();
+                session_destroy();
+                die(json_encode(array("success" => false)));
+            }
         }
+        
         header("Location: ../index.php");
 
         
