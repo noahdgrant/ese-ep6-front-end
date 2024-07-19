@@ -53,7 +53,6 @@ session_start();
                                         <p id="pswd_errror_msg"></p>
                                     </div>
                                 </fieldset>
-                                <input id="conestoga_id" type="hidden" name="conestoga_id" value="">
                                 <input type="hidden" name="function" value="login">
                             </form>
                         </div>

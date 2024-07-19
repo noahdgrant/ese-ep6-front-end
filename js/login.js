@@ -43,13 +43,27 @@ function get_server() {
         if (this.readyState == 4 && this.status == 200) {
             // Typical action to be performed when the document is ready:
             if (xhttp.responseText != ""){
-                conestoga_id.value = xhttp.responseText;
-                form.submit();
+                login_with_id(xhttp.responseText)
             }
         }
     };
     xhttp.open("GET", "./php/get_server.php", true);
     xhttp.send();
+}
+
+function login_with_id(id) {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            let response = JSON.parse(xhttp.responseText);
+            if (response.success){
+
+            }
+        }
+    };
+    xhttp.open("POST", "./php/db_crud.php", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.send("conestoga_id="+encodeURIComponent(id)+"&function=login");
 }
 
 function validate_username(e) {
