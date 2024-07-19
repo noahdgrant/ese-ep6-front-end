@@ -97,7 +97,7 @@ if(isset($_POST["function"])){
         $database = db_connect($db_users);
 
         if($_POST["conestoga_id"]==""){
-            $query = "SELECT password FROM accounts WHERE username = :username";
+            $query = "SELECT password FROM accounts WHERE Username = :username";
             $statement = $database->prepare($query);
             $statement->bindParam(":username", $_POST["username"], PDO::PARAM_STR);
             $result = $statement->execute();
@@ -114,7 +114,7 @@ if(isset($_POST["function"])){
             }
         }
         else{
-            $statement = $database->prepare("SELECT username FROM accounts WHERE ID = ?");
+            $statement = $database->prepare("SELECT Username FROM accounts WHERE ID = ?");
             $result = $statement->execute([$_POST["conestoga_id"]]);
             $storedUsername = $statement->fetch(PDO::FETCH_ASSOC);
             if ($result){
