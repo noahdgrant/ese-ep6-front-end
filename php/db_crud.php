@@ -107,10 +107,12 @@ if(isset($_POST["function"])){
             if ($result && password_verify($_POST["password"], $storedPassword['password'])){
                 // start session
                 $_SESSION["username"] = $_POST["username"];
+                die(json_encode(array("success" => true)));
             }
             else{
                 session_unset();
                 session_destroy();
+                die(json_encode(array("success" => false)));
             }
         }
         else{
