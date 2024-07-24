@@ -19,6 +19,6 @@ if (strncasecmp(PHP_OS, 'WIN', 3) == 0) {
     $command = 'php -f server.php > /dev/null 2>&1 & echo $!';
 }
 // Execute the command and save the PID
-echo json_encode(array('success' => 'true', 'message' => 'Server started.'));
+echo json_encode(array("success" => true, "message" => "Server started."));
 shell_exec($command);
 ?>

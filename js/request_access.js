@@ -1,4 +1,5 @@
 // Javascript for validating information when someone requests access
+let is_debug = false;
 
 const MIN_LENGTH = 7;
 
@@ -129,10 +130,8 @@ function check_username_availability(e){
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            // Typical action to be performed when the document is ready:
-            // document.getElementById("users").innerHTML = xhttp.responseText;
             let response = JSON.parse(xhttp.responseText);
-            if (!response.success){
+            if (!response.success){ // Username already in use
                 document.getElementById("user_errror_msg").innerHTML = error_msg + "Username already taken<br>";
                 e.preventDefault();
             }
@@ -157,7 +156,7 @@ function check_email_availability(e){
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = JSON.parse(xhttp.responseText);
-            if (!response.success){
+            if (!response.success){ // Email already in use
                 document.getElementById("email_errror_msg").innerHTML = error_msg + "Email is already in use<br>";
                 e.preventDefault();
             }

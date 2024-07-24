@@ -42,8 +42,8 @@ session_start();
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    // Typical action to be performed when the document is ready:
-                    document.getElementById("log").innerHTML += xhttp.responseText;
+                    let response = JSON.parse(xhttp.responseText);
+                    document.getElementById("log").innerHTML += response.message + "<br>";
                 }
             };
             xhttp.open("GET", "./php/start_server.php", true);
@@ -54,14 +54,15 @@ session_start();
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    // Typical action to be performed when the document is ready:
-                    document.getElementById("log").innerHTML += xhttp.responseText;
+                    let response = JSON.parse(xhttp.responseText);
+                    document.getElementById("log").innerHTML += response.message + "<br>";
                 }
             };
             xhttp.open("GET", "./php/stop_server.php", true);
             xhttp.send();
         }
 
+        // Periodically checks to see if any new NFC cards have been read
         function get_server() {
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
@@ -76,18 +77,24 @@ session_start();
             xhttp.send();
         }
 
+        // Gets values from flatfile DB
         function getData(){
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    // Typical action to be performed when the document is ready:
-                    document.getElementById("users").innerHTML = xhttp.responseText;
+                    let response = JSON.parse(xhttp.responseText);
+                    if (response.success){
+                        for(const index of response.result.users){
+                            document.getElementById("users").innerHTML += "Name: " + index["name"] +", ID: "+ index["id"] + "<br>";
+                        }
+                    }
                 }
             };
             xhttp.open("GET", "./php/flatfile_db.php", true);
             xhttp.send();
         }
 
+        // Sets values in flatfile DB
         function setData(){
             let id = document.getElementById("user_ID").value;
             let name = document.getElementById("name").value;
@@ -95,8 +102,13 @@ session_start();
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    // Typical action to be performed when the document is ready:
-                    document.getElementById("users").innerHTML = xhttp.responseText;
+                    let response = JSON.parse(xhttp.responseText);
+                    if (response.success){
+                        document.getElementById("users").innerHTML = "";
+                        for(const index of response.result.users){
+                            document.getElementById("users").innerHTML += "Name: " + index["name"] +", ID: "+ index["id"] + "<br>";
+                        }
+                    }
                 }
             };
             xhttp.open("POST", "./php/flatfile_db.php", true);

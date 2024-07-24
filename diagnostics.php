@@ -21,7 +21,7 @@ session_start();
                 // request activity -> pie chart of request mothods
                 // raw data -> a table holding num of entries, num of users ...
 
-                if(isset($_SESSION['username'])){
+                if(isset($_SESSION["username"])){
                     echo <<<EOT
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#fh_time">Floor History (Time)</a></li>

@@ -18,9 +18,9 @@ if ($pid) {
     }
     // Remove the PID file
     unlink($pidFile);
-    echo 'Server stopped. <br>';
+    die(json_encode(array("success" => true, "message" => "Server stopped.")));
 } else {
-    die('Unable to read PID. <br>');
+    die(json_encode(array("success" => false, "message" => "Error: Unable to read PID.")));
 }
 
 ?>

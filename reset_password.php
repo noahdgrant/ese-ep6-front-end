@@ -14,7 +14,7 @@ session_start();
             // Include db connect functions & variables
             require "php/db_connect.php";
 
-            if ($_SERVER['REQUEST_METHOD'] == "GET") {
+            if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 $token = $_GET["token"];
                 $database = db_connect($db_users);
                 // Validate the token

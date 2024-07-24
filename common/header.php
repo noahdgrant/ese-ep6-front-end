@@ -24,7 +24,7 @@
                     <a class="nav-item nav-link <?php if ($title=="Wyatt's Logbook") echo 'active';?>" href="./logbook_wyatt.php">Wyatt's Logbook</a>
                 </li>
                 <?php
-                if(isset($_SESSION['username'])){
+                if(isset($_SESSION["username"])){
                     echo <<<EOT
                     <li class="nav-item">
                         <a class="nav-item nav-link" href="./diagnostics.php">Elevator Diagnostics</a>
@@ -35,7 +35,7 @@
             </ul>
             <ul class="navbar-nav ms-auto">
                 <?php
-                if(isset($_SESSION['username'])){
+                if(isset($_SESSION["username"])){
                     echo <<<EOT
                     <li class="nav-item">
                         <a class="nav-link" href="./php/db_crud.php?function=logout">Logout</a>
