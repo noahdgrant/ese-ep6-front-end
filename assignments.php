@@ -113,8 +113,7 @@ session_start();
                     <!-- A1Q18 -->
                     <li><a href="./index.php#login">Request Access Button at Login</a> - <b>Not Done yet</b></li>
                     <!-- A1Q19 -->
-                    <li>All pages structured using HTML5 layout elements and 'header, section, footer, aside, nav, article, figure {display: block;}' included in css
-                    </li>
+                    <li>All pages structured using HTML5 layout elements and "header, section, footer, aside, nav, article, figure {display: block;}" included in css</li>
                     <!-- A1Q20 -->
                     <li>Bootstrap included in all pages (used for navbar), grid system can be seen used on <a href="./index.php">home</a> page </li>
                     <!-- A1Q21 -->

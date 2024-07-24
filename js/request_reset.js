@@ -11,7 +11,6 @@ function validate_information(e) {
         let xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                // Typical action to be performed when the document is ready:
                 let response = JSON.parse(xhttp.responseText);
                 if (response.success){
                     alert("Email Sent Successfully");

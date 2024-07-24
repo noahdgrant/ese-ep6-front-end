@@ -4,10 +4,13 @@ $db_users = "users";
 $db_elevator_one = "ElevatorOne";
 
 // Connect to database
-function db_connect($db) {
-    $username = getenv("MYSQL_USERNAME");
-    $password = getenv("MYSQL_PASSWORD");
-    $host = getenv("MYSQL_ADDRESS");
+function db_connect($db, $username = null, $password = null, $host = null) {
+    if($username === null){
+        $username = getenv("MYSQL_USERNAME");
+        $password = getenv("MYSQL_PASSWORD");
+        $host = getenv("MYSQL_ADDRESS");
+    }
+    
     $path = "mysql:host=".$host.";dbname=".$db;
 
     $database = new PDO($path, $username, $password);

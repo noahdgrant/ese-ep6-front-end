@@ -1,3 +1,6 @@
+// Javascript for displaying data from database using chart.js
+let is_debug = false;
+
 // on load get all stats
 window.addEventListener("load", readStats);
 
@@ -53,13 +56,16 @@ function readStats(){
             // Typical action to be performed when the document is ready:
             let response = JSON.parse(xhttp.responseText);
             if(response.success){
-                console.log("Successfully got elevator history")
+                if(is_debug){
+                    console.log("Successfully got elevator history");
+                }
+                
                 processData(response);
                 initializeFhTimeChart();
-                $('#fh_time_canv').data('initialized', true);
+                $("#fh_time_canv").data("initialized", true);
             }
-            else{
-                console.log("Error getting elevator history")
+            else if(is_debug){
+                console.log("Error getting elevator history");
             }
         }
     };

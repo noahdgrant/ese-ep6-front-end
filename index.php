@@ -16,7 +16,7 @@ session_start();
                 </div>
                 <div class="row">
                     <?php
-                    if(isset($_SESSION['username'])){
+                    if(isset($_SESSION["username"])){
                         echo <<<EOT
                         <div class="col-xs-12 col-md-6">
                             <input type="image" class="centered_image" id="btn_3" src="./images/elevator_btns/elevator-btn-3.png"><br>
@@ -37,11 +37,11 @@ session_start();
                                     <legend>Login</legend>
                                     <div>
                                         <label for="username" class="form_label">Username: </label>
-                                        <input id="username" class="form_input" type="text" name="username">
+                                        <input id="username" class="form_input" type="text" name="username" autocomplete="username">
                                     </div>
                                     <div>
                                         <label for="password" class="form_label">Password:</label>
-                                        <input id="password" class="form_input" type="password" name="password">
+                                        <input id="password" class="form_input" type="password" name="password" autocomplete="current-password">
                                     </div>
                                     <br>
                                     <input type="submit" value="Log in" id="submit">

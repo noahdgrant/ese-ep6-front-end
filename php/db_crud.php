@@ -1,6 +1,26 @@
 <?php
 session_start();
 
+
+/*
+Reference for different methods of structuring queries:
+Method 1:
+$result = $database->query("INSERT INTO RequestHistory (Method, Floor) VALUES ($method, $floor)");
+
+Method 2:
+$query = "INSERT INTO RequestHistory (Method, Floor) VALUES (:method, :floor)";
+$statement = $database->prepare($query);
+$statement->bindParam(":method", $method, PDO::PARAM_STR);
+$statement->bindParam(":floor", $floor, PDO::PARAM_STR);
+$result = $statement->execute();
+
+Method 3:
+$statement = $database->prepare("INSERT INTO RequestHistory (Method, Floor) VALUES (?, ?)");
+$statement->execute([$method, $floor]);
+*/
+
+
+
 // Include db connect functions
 require "db_connect.php";
 
@@ -12,9 +32,24 @@ if(isset($_POST["function"])){
     // T: RequestHistory
     if($_POST["function"] === "select_floor"){
         $database = db_connect($db_elevator_one);
-        $floor = $_POST["floor"];
-        $result = $database->query("INSERT INTO RequestHistory (Method, Floor) VALUES ('Website', $floor)");
-        //die(json_encode(array("success" => false, "message" => "Error: .")));
+        $database->beginTransaction();
+        try{
+            $floor = $_POST["floor"];
+
+            $statement = $database->prepare("INSERT INTO RequestHistory (Method, Floor) VALUES ('Website', ?)");
+            $statement->execute([$floor]);
+            $result = $statement->rowCount();
+
+            if ($result == 0){
+                throw new Exception("Error: ");
+            }
+            $database->commit();
+        }
+        catch(Exception $e){
+            $database->rollBack();
+            die(json_encode(array("success" => false, "message" => $e)));
+        }
+        die(json_encode(array("success" => true, "message" => "")));
     }
 
     // Create User
@@ -22,23 +57,32 @@ if(isset($_POST["function"])){
     // T: accounts
     elseif($_POST["function"] === "create_user"){
         $database = db_connect("users");
-        $hashed_password = password_hash($_POST["password"], PASSWORD_BCRYPT);
-        if($_POST["conestoga_id"]==""){
-            $conestoga_card_id = NULL;
-        }
-        else{
-            $conestoga_card_id = $_POST["conestoga_id"];
-        }
-        $query = "INSERT INTO accounts (Username, Password, Email, ConestogaCardID) VALUES (:Username, :Password, :Email, :ConestogaCardID)";
-        $statement = $database->prepare($query);
-        $statement->bindParam(":ConestogaCardID", $conestoga_card_id, PDO::PARAM_STR);
-        $statement->bindParam(":Username", $_POST["username"], PDO::PARAM_STR);
-        $statement->bindParam(":Password", $hashed_password, PDO::PARAM_STR);
-        $statement->bindParam(":Email", $_POST["email"], PDO::PARAM_STR);
-        
-        $result = $statement->execute();
+        $database->beginTransaction();
+        try{
+            $hashed_password = password_hash($_POST["password"], PASSWORD_BCRYPT);
+            if($_POST["conestoga_id"]==""){
+                $conestoga_card_id = NULL;
+            }
+            else{
+                $conestoga_card_id = $_POST["conestoga_id"];
+            }
 
-        $_SESSION["username"] = $_POST["username"];
+            $statement = $database->prepare("INSERT INTO accounts (Username, Password, Email, ConestogaCardID) VALUES (?, ?, ?, ?)");
+            $statement->execute([$_POST["username"], $hashed_password, $_POST["email"], $conestoga_card_id]);
+            $result = $statement->rowCount();
+
+            if ($result == 0){
+                throw new Exception("Error: ");
+            }
+            
+            $_SESSION["username"] = $_POST["username"];
+
+            $database->commit();
+        }
+        catch(Exception $e){
+            $database->rollBack();
+            header("Location: ../request_access.php");
+        }
         header("Location: ../index.php");
     }
 
@@ -63,7 +107,7 @@ if(isset($_POST["function"])){
         }
 
         $statement = $database->prepare("SELECT COUNT(*) FROM accounts WHERE $query_field = :query_field");
-        $statement->bindParam(':query_field', $query_value);
+        $statement->bindParam(":query_field", $query_value);
         $statement->execute();
         $count = $statement->fetchColumn();
         if ($count > 0) {
@@ -125,7 +169,7 @@ if(isset($_POST["function"])){
 
             $storedPassword = $statement->fetch(PDO::FETCH_ASSOC);
 
-            if ($result && password_verify($_POST["password"], $storedPassword['password'])){
+            if ($result && password_verify($_POST["password"], $storedPassword["password"])){
                 // start session
                 $_SESSION["username"] = $_POST["username"];
             }
@@ -162,24 +206,38 @@ if(isset($_POST["function"])){
     // T: accounts
     elseif($_POST["function"] === "update_user"){
         $database = db_connect($db_users);
+        $database->beginTransaction();
+        try{
+            $new_password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-        $new_password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $statement = $database->prepare("UPDATE accounts SET password = ? WHERE email = ?");
+            $statement->execute([$new_password, $_POST["email"]]);
+            $result = $statement->rowCount();
 
-        $statement = $database->prepare("UPDATE accounts SET password = ? WHERE email = ?");
-        $statement->execute([$new_password, $_POST["email"]]);
+            if ($result == 0){
+                throw new Exception("Error: Unable to update password");
+            }
 
-        // Delete the token
-        $statement = $database->prepare('DELETE FROM password_resets WHERE token = ?');
-        $statement->execute([$_POST["token"]]);
+            // Delete the token
+            $statement = $database->prepare("DELETE FROM password_resets WHERE token = ?");
+            $statement->execute([$_POST["token"]]);
+            $result = $statement->rowCount();
 
+            if ($result == 0){
+                throw new Exception("Error: Unable to delete token");
+            }
+
+            $database->commit();
+        }
+        catch(Exception $e){
+            $database->rollBack();
+            die(json_encode(array("success" => false, "message" => $e)));
+        }
         die(json_encode(array("success" => true)));
-
     }
 
     // DELETE
 
-    // Close connection
-    $database = null;
 }
 elseif(isset($_GET["function"])){
     if ($_GET["function"]==="logout"){
