@@ -109,9 +109,17 @@ session_start();
                 <ul>
                     <li>Finished implementing CRUD functions</li>
                     <li>Implemented eMail for password reseting</li>
+                    <li>Added elevator GUI to control elevetor from index page when logged in</li>
                 </ul>
                 <h2 id="week11">Week 11</h2>
+                <ul>
+                    <li>Finished NFC implementation for login and signup</li>
+                    <li>Added diagnostics page to display data from the database</li>
+                </ul>
                 <h2 id="week12">Week 12</h2>
+                <ul>
+                    <li>Implemented Try catch and transactions for database interactions</li>
+                </ul>
                 <h2 id="week13">Week 13</h2>
                 <h2 id="week14">Week 14</h2>
                 <h2 id="week15">Week 15</h2>
