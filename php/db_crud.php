@@ -36,13 +36,18 @@ if(isset($_POST["function"])){
         try{
             $floor = $_POST["floor"];
 
+            if(!in_array($floor, array("1", "2", "3"), true )){
+                throw new Exception("Error: Invalid Floor");
+            }
+
             $statement = $database->prepare("INSERT INTO RequestHistory (Method, Floor) VALUES ('Website', ?)");
             $statement->execute([$floor]);
             $result = $statement->rowCount();
 
             if ($result == 0){
-                throw new Exception("Error: ");
+                throw new Exception("Error: Unable to write to the database");
             }
+            
             $database->commit();
         }
         catch(Exception $e){
